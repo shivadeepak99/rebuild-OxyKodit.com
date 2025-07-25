@@ -1,31 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-colors duration-300">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Once a Maintainer: Sofie Van Landeghem - OxyKodit</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'oxy-bg': '#FAF8FF',
+                        'oxy-dark': '#2D1B69',
+                        'oxy-primary': '#7C3AED',
+                        'oxy-secondary': '#06B6D4',
+                        'oxy-light': '#8B5CF6',
+                        'dark-bg': '#0F0A1A',
+                        'dark-surface': '#1A0F2E',
+                        'dark-text': '#E2E8F0',
+                        'dark-primary': '#A855F7',
+                        'dark-accent': '#38BDF8'
+                    }
+                }
+            }
+        }
+    </script>
     <link href="../styles.css" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
+<body class="bg-oxy-bg dark:bg-dark-bg text-oxy-dark dark:text-dark-text font-body leading-relaxed transition-colors duration-300">
     <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
+    <nav class="bg-white dark:bg-dark-surface shadow-lg sticky top-0 z-50 transition-colors duration-300 border-b border-gray-100 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
                     <img src="../images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="h-8 w-8 mr-3">
-                    <span class="text-2xl font-bold text-gray-800">OxyKodit</span>
+                    <span class="text-2xl font-bold text-oxy-dark dark:text-dark-text">OxyKodit</span>
                 </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="../blog.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Blog</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition duration-300">Home</a>
+                    <a href="../blog.html" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition duration-300">Blog</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
+                        <svg id="sun-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="bg-gradient-to-r from-green-600 to-blue-700 text-white py-16">
+    <div class="bg-gradient-to-r from-oxy-secondary to-oxy-primary dark:from-dark-accent dark:to-dark-primary text-white py-16 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4">
             <div class="text-center">
                 <h1 class="text-4xl md:text-5xl font-bold mb-6">Once a Maintainer: Sofie Van Landeghem</h1>
@@ -37,22 +68,22 @@
     <!-- Article Content -->
     <div class="max-w-4xl mx-auto px-4 py-16">
         <article class="prose prose-lg max-w-none">
-            <div class="bg-white rounded-lg shadow-lg p-8">
+            <div class="bg-white dark:bg-dark-surface rounded-lg shadow-lg p-8 border border-gray-100 dark:border-gray-700 transition-colors duration-300">
                 <div class="mb-8">
-                    <p class="text-gray-600 text-sm mb-4">Published on: 28 June 2024</p>
+                    <p class="text-oxy-light dark:text-dark-text/70 text-sm mb-4">Published on: 28 June 2024</p>
                 </div>
 
-                <div class="space-y-6 text-gray-700 leading-relaxed">
+                <div class="space-y-6 text-oxy-dark dark:text-dark-text leading-relaxed">
                     <p>
                         Allison Pike interviewed me about my work as a core maintainer of spaCy and Typer. We ended up talking about how I got into NLP in the first place, the disconnect between research and industry applications, and how to manage an Open-Source project.
                     </p>
 
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Journey into NLP</h2>
+                    <h2 class="text-2xl font-semibold text-oxy-dark dark:text-dark-text mt-8 mb-4">The Journey into NLP</h2>
                     <p>
                         My path into Natural Language Processing wasn't entirely conventional. Starting with a background in computational biology and bioinformatics, I discovered that many of the techniques used for analyzing biological sequences could be applied to natural language text processing. This interdisciplinary approach has shaped my perspective on NLP throughout my career.
                     </p>
 
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Maintaining spaCy and Typer</h2>
+                    <h2 class="text-2xl font-semibold text-oxy-dark dark:text-dark-text mt-8 mb-4">Maintaining spaCy and Typer</h2>
                     <p>
                         Being a core maintainer of open-source projects like spaCy and Typer involves much more than just writing code. It's about:
                     </p>
@@ -65,13 +96,13 @@
                         <li>Supporting users across diverse backgrounds and use cases</li>
                     </ul>
 
-                    <div class="bg-green-50 border-l-4 border-green-400 p-6 my-8">
-                        <p class="text-green-800 italic">
+                    <div class="bg-oxy-secondary/10 dark:bg-dark-accent/10 border-l-4 border-oxy-secondary dark:border-dark-accent p-6 my-8 transition-colors duration-300">
+                        <p class="text-oxy-secondary dark:text-dark-accent italic">
                             "Open-source maintenance is as much about people as it is about code. The most rewarding aspect is seeing how the tools we build enable others to solve real-world problems."
                         </p>
                     </div>
 
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Research-Industry Disconnect</h2>
+                    <h2 class="text-2xl font-semibold text-oxy-dark dark:text-dark-text mt-8 mb-4">The Research-Industry Disconnect</h2>
                     <p>
                         One of the topics we discussed extensively was the gap between academic research and practical industry applications. In academia, the focus is often on achieving state-of-the-art performance on benchmark datasets. However, real-world applications require:
                     </p>
@@ -99,12 +130,12 @@
                         Maintaining technical vision while being open to community input requires careful consideration of architecture decisions, API design, and long-term project sustainability.
                     </p>
 
-                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Sustainability</h3>
+                    <h3 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mt-6 mb-3">Sustainability</h3>
                     <p>
                         Ensuring project longevity involves finding sustainable funding models, preventing maintainer burnout, and establishing clear governance structures.
                     </p>
 
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Lessons Learned</h2>
+                    <h2 class="text-2xl font-semibold text-oxy-dark dark:text-dark-text mt-8 mb-4">Lessons Learned</h2>
                     <p>
                         Through years of maintaining these projects, I've learned that successful open-source projects are built on:
                     </p>
@@ -117,7 +148,7 @@
                         <li>Balance between innovation and stability</li>
                     </ul>
 
-                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Looking Forward</h2>
+                    <h2 class="text-2xl font-semibold text-oxy-dark dark:text-dark-text mt-8 mb-4">Looking Forward</h2>
                     <p>
                         The NLP landscape continues to evolve rapidly, especially with the rise of large language models. As maintainers, our role is to help bridge the gap between cutting-edge research and practical, accessible tools that developers can use to build real applications.
                     </p>
@@ -131,23 +162,44 @@
 
         <!-- Navigation -->
         <div class="mt-12 flex justify-between items-center">
-            <a href="../blog.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+            <a href="../blog.html" class="inline-flex items-center px-6 py-3 bg-oxy-primary dark:bg-dark-primary text-white rounded-lg hover:bg-oxy-primary/80 dark:hover:bg-dark-primary/80 transition duration-300">
                 <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
                 </svg>
                 Back to Blog
             </a>
-            <div class="text-sm text-gray-500">
+            <div class="text-sm text-oxy-light dark:text-dark-text/70">
                 Open Source & Community
             </div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-12">
+    <footer class="bg-oxy-dark dark:bg-dark-surface text-white dark:text-dark-text py-12 transition-colors duration-300">
         <div class="max-w-4xl mx-auto px-4 text-center">
             <p>&copy; 2024 OxyKodit. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            
+            // Save theme preference
+            const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
+    </script>
 </body>
 </html>

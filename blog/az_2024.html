@@ -1,10 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="transition-colors duration-300">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From quick prototyping with LLMs to more reliable and efficient NLP solutions - OxyKodit</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'oxy-bg': '#FAF8FF',
+                        'oxy-dark': '#2D1B69',
+                        'oxy-primary': '#7C3AED',
+                        'oxy-secondary': '#06B6D4',
+                        'oxy-light': '#8B5CF6',
+                        'dark-bg': '#0F0A1A',
+                        'dark-surface': '#1A0F2E',
+                        'dark-text': '#E2E8F0',
+                        'dark-primary': '#A855F7',
+                        'dark-accent': '#38BDF8'
+                    }
+                }
+            }
+        }
+    </script>
     <link href="../styles.css" rel="stylesheet">
     <style>
         /* Custom CSS for consistent layout */
@@ -24,6 +45,9 @@
             line-height: 1.7;
             color: #333;
         }
+        .dark .blog-content {
+            color: #E2E8F0;
+        }
         .blog-content p {
             margin-bottom: 1.5rem;
         }
@@ -33,22 +57,36 @@
             border-radius: 8px;
             margin: 2rem 0;
         }
+        .dark .blog-meta {
+            background: #1A0F2E;
+            border: 1px solid #374151;
+        }
         .blog-meta p {
             margin: 0.5rem 0;
         }
     </style>
 </head>
-<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen">
+<body class="bg-oxy-bg dark:bg-dark-bg text-oxy-dark dark:text-dark-text font-body leading-relaxed transition-colors duration-300 min-h-screen">
     <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b">
+    <nav class="fixed top-0 left-0 w-full bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm z-50 border-b border-gray-200 dark:border-gray-700 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <a href="../index.html" class="text-2xl font-bold text-purple-600">OxyKodit</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="../index.html" class="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
-                    <a href="../blog.html" class="text-gray-700 hover:text-purple-600 transition-colors">Blog</a>
-                    <a href="../index.html#projects" class="text-gray-700 hover:text-purple-600 transition-colors">Projects</a>
-                    <a href="../index.html#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+                <a href="../index.html" class="text-2xl font-bold text-oxy-primary dark:text-dark-primary">OxyKodit</a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors">Home</a>
+                    <a href="../blog.html" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors">Blog</a>
+                    <a href="../index.html#projects" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors">Projects</a>
+                    <a href="../index.html#contact" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors">Contact</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors duration-200">
+                        <svg id="sun-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg id="moon-icon" class="w-5 h-5 text-gray-600 dark:text-gray-300 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -59,7 +97,7 @@
         <div class="blog-container">
             <!-- Back to Blog Link -->
             <div class="mb-8">
-                <a href="../blog.html" class="text-purple-600 hover:text-purple-800 transition-colors flex items-center">
+                <a href="../blog.html" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 transition-colors flex items-center">
                     ← Back to Blog
                 </a>
             </div>
@@ -67,16 +105,16 @@
             <!-- Blog Header -->
             <div class="text-center mb-8">
                 <div class="mb-4">
-                    <img src="../images/Blog.jpg" alt="Sofie Van Landeghem" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-lg">
+                    <img src="../images/Blog.jpg" alt="Sofie Van Landeghem" class="w-24 h-24 rounded-full mx-auto border-4 border-white dark:border-gray-600 shadow-lg">
                 </div>
-                <time class="text-gray-500 text-sm">23 January 2024</time>
+                <time class="text-oxy-light dark:text-dark-text/70 text-sm">23 January 2024</time>
             </div>
 
             <!-- Featured Image -->
             <img src="../images/2024_01_23_az.png" alt="From quick prototyping with LLMs to more reliable and efficient NLP solutions" class="blog-image">
 
             <!-- Blog Title -->
-            <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">From quick prototyping with LLMs to more reliable and efficient NLP solutions</h1>
+            <h1 class="text-4xl font-bold text-center mb-8 text-oxy-dark dark:text-dark-text">From quick prototyping with LLMs to more reliable and efficient NLP solutions</h1>
 
             <!-- Blog Content -->
             <div class="blog-content">
@@ -86,33 +124,33 @@
             <!-- Blog Meta Information -->
             <div class="blog-meta">
                 <p><strong>→ Venue</strong>: AstraZeneca NLP Community of Practice (external speaker, online)</p>
-                <p><strong>→ Slides</strong>: <a href="https://speakerdeck.com/sofievl/2024-01-23-az" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800">SpeakerDeck</a></p>
-                <p><strong>→ Repo</strong>: <a href="https://github.com/explosion/spacy-llm/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800">Github</a></p>
+                <p><strong>→ Slides</strong>: <a href="https://speakerdeck.com/sofievl/2024-01-23-az" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80">SpeakerDeck</a></p>
+                <p><strong>→ Repo</strong>: <a href="https://github.com/explosion/spacy-llm/" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80">Github</a></p>
             </div>
 
             <!-- Contact Section -->
-            <div class="bg-purple-100 rounded-lg p-8 text-center mt-12">
-                <h2 class="text-2xl font-bold mb-4">Looking for a custom NLP solution?</h2>
-                <p class="text-gray-700 mb-6">Please contact me via: <a href="mailto:sofie@oxykodit.com" class="text-purple-600 hover:text-purple-800 font-semibold">sofie@oxykodit.com</a></p>
+            <div class="bg-oxy-primary/10 dark:bg-dark-primary/10 rounded-lg p-8 text-center mt-12 border border-oxy-primary/20 dark:border-dark-primary/20">
+                <h2 class="text-2xl font-bold mb-4 text-oxy-dark dark:text-dark-text">Looking for a custom NLP solution?</h2>
+                <p class="text-oxy-dark dark:text-dark-text/80 mb-6">Please contact me via: <a href="mailto:sofie@oxykodit.com" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 font-semibold">sofie@oxykodit.com</a></p>
                 
                 <!-- Social Links -->
                 <div class="flex justify-center space-x-6">
-                    <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fas fa-graduation-cap"></i>
                     </a>
-                    <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fab fa-youtube"></i>
                     </a>
-                    <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a href="mailto:Sofie@oxykodit.com" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                    <a href="mailto:Sofie@oxykodit.com" target="_blank" rel="noopener" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary/80 dark:hover:text-dark-primary/80 text-2xl">
                         <i class="fas fa-envelope"></i>
                     </a>
                 </div>
@@ -121,7 +159,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+    <footer class="bg-oxy-dark dark:bg-dark-surface text-white dark:text-dark-text text-center py-6 mt-12 transition-colors duration-300">
         <div class="max-w-6xl mx-auto px-6">
             <p>&copy; Copyright 2019 - <span id="current-year"></span> | OxyKodit BV</p>
         </div>
@@ -129,6 +167,25 @@
 
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+        
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        if (currentTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            
+            // Save theme preference
+            const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+            localStorage.setItem('theme', theme);
+        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 </body>
