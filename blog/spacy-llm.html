@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrating Large Language Models into structured NLP pipelines - OxyKodit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="../images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="h-8 w-8 mr-3">
+                    <span class="text-2xl font-bold text-gray-800">OxyKodit</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="../blog.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Integrating Large Language Models into structured NLP pipelines</h1>
+                <p class="text-xl opacity-90">Building robust NLP systems with spaCy and spacy-llm</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <article class="prose prose-lg max-w-none">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="mb-8">
+                    <p class="text-gray-600 text-sm mb-4">Published on: 19 June 2023</p>
+                </div>
+
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p>
+                        In this talk presented at the Belgian NLP meetup, I showcase how to build such a structured pipeline with the open-source NLP toolbox spaCy, and its recent extension 'spacy-llm'. This presentation explores the intersection of traditional NLP pipelines and modern large language models.
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Evolution of NLP Pipelines</h2>
+                    <p>
+                        Traditional NLP pipelines have long relied on structured, modular approaches where each component has a specific role: tokenization, part-of-speech tagging, named entity recognition, dependency parsing, and so on. With the advent of large language models, we now have the opportunity to enhance these pipelines with powerful generative capabilities while maintaining the reliability and interpretability of structured approaches.
+                    </p>
+
+                    <div class="bg-purple-50 border-l-4 border-purple-400 p-6 my-8">
+                        <p class="text-purple-800 italic">
+                            "The future of NLP lies not in replacing structured pipelines with LLMs, but in thoughtfully integrating them to leverage the strengths of both approaches."
+                        </p>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Why Structured Pipelines Still Matter</h2>
+                    <p>
+                        Despite the impressive capabilities of large language models, structured NLP pipelines continue to offer several advantages:
+                    </p>
+                    
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Reliability:</strong> Deterministic behavior and predictable outputs</li>
+                        <li><strong>Efficiency:</strong> Lower computational costs for specific tasks</li>
+                        <li><strong>Interpretability:</strong> Clear understanding of how decisions are made</li>
+                        <li><strong>Customization:</strong> Fine-grained control over individual components</li>
+                        <li><strong>Domain Adaptation:</strong> Easy integration of domain-specific knowledge</li>
+                        <li><strong>Production Readiness:</strong> Battle-tested components with known performance characteristics</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Introducing spacy-llm</h2>
+                    <p>
+                        The spacy-llm extension represents a thoughtful approach to integrating large language models into spaCy pipelines. Rather than replacing existing components wholesale, it provides mechanisms to enhance them with LLM capabilities where appropriate.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Key Features of spacy-llm</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Flexible Integration:</strong> Use LLMs for specific tasks within larger pipelines</li>
+                        <li><strong>Multiple Provider Support:</strong> Works with OpenAI, Cohere, Anthropic, and other providers</li>
+                        <li><strong>Caching and Batching:</strong> Efficient handling of API calls and responses</li>
+                        <li><strong>Structured Output:</strong> LLM responses are parsed into spaCy's structured format</li>
+                        <li><strong>Custom Prompts:</strong> Full control over prompt engineering and few-shot examples</li>
+                        <li><strong>Error Handling:</strong> Robust fallback mechanisms for API failures</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Practical Integration Patterns</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">1. LLM-Enhanced Named Entity Recognition</h3>
+                    <p>
+                        Use LLMs to identify entities that traditional NER models might miss, especially in specialized domains or with emerging entity types:
+                    </p>
+                    <div class="bg-gray-100 rounded-lg p-4 font-mono text-sm">
+                        <code>
+                            nlp.add_pipe("llm_ner", config={<br>
+                            &nbsp;&nbsp;"model": "gpt-3.5-turbo",<br>
+                            &nbsp;&nbsp;"labels": ["PERSON", "ORG", "PRODUCT", "TECHNOLOGY"]<br>
+                            })
+                        </code>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. Sentiment Analysis with Context</h3>
+                    <p>
+                        Leverage LLMs' understanding of context and nuance for more sophisticated sentiment analysis:
+                    </p>
+                    <div class="bg-gray-100 rounded-lg p-4 font-mono text-sm">
+                        <code>
+                            nlp.add_pipe("llm_sentiment", config={<br>
+                            &nbsp;&nbsp;"model": "text-davinci-003",<br>
+                            &nbsp;&nbsp;"labels": ["POSITIVE", "NEGATIVE", "NEUTRAL", "MIXED"]<br>
+                            })
+                        </code>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3. Text Classification with Few-Shot Learning</h3>
+                    <p>
+                        Use LLMs for text classification tasks where labeled training data is scarce:
+                    </p>
+                    <div class="bg-gray-100 rounded-lg p-4 font-mono text-sm">
+                        <code>
+                            nlp.add_pipe("llm_textcat", config={<br>
+                            &nbsp;&nbsp;"model": "gpt-4",<br>
+                            &nbsp;&nbsp;"labels": ["COMPLAINT", "INQUIRY", "COMPLIMENT"],<br>
+                            &nbsp;&nbsp;"examples": few_shot_examples<br>
+                            })
+                        </code>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Best Practices for Integration</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Prompt Engineering</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Clear Instructions:</strong> Provide explicit, unambiguous task descriptions</li>
+                        <li><strong>Format Specifications:</strong> Define expected output formats clearly</li>
+                        <li><strong>Few-Shot Examples:</strong> Include representative examples for better performance</li>
+                        <li><strong>Edge Case Handling:</strong> Address common failure modes in prompts</li>
+                        <li><strong>Consistency Checks:</strong> Include instructions for maintaining consistency</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Performance Optimization</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Batch Processing:</strong> Group multiple texts for efficient API usage</li>
+                        <li><strong>Caching:</strong> Store results to avoid redundant API calls</li>
+                        <li><strong>Fallback Strategies:</strong> Have backup plans for API failures or poor responses</li>
+                        <li><strong>Cost Management:</strong> Monitor and optimize API usage costs</li>
+                        <li><strong>Response Validation:</strong> Verify LLM outputs meet quality standards</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Real-World Use Cases</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Customer Support Analysis</h3>
+                    <p>
+                        Combine traditional NLP components for basic processing with LLMs for understanding complex customer intents and emotions that require contextual understanding.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Scientific Literature Mining</h3>
+                    <p>
+                        Use structured piplines for standard entity extraction while leveraging LLMs for understanding relationships and extracting insights that traditional methods might miss.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Legal Document Processing</h3>
+                    <p>
+                        Employ deterministic components for reliable identification of standard legal entities while using LLMs for understanding complex legal concepts and relationships.
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Challenges and Considerations</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Technical Challenges</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Latency:</strong> API calls can introduce significant delays</li>
+                        <li><strong>Reliability:</strong> Network issues and API downtime affect pipeline stability</li>
+                        <li><strong>Consistency:</strong> LLM outputs may vary between runs</li>
+                        <li><strong>Parsing:</strong> Converting unstructured LLM outputs to structured data</li>
+                        <li><strong>Error Handling:</strong> Graceful degradation when LLM components fail</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Operational Considerations</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Cost Management:</strong> API costs can scale quickly with usage</li>
+                        <li><strong>Data Privacy:</strong> Sending data to external APIs raises privacy concerns</li>
+                        <li><strong>Vendor Lock-in:</strong> Dependence on specific LLM providers</li>
+                        <li><strong>Monitoring:</strong> Tracking performance and quality of LLM components</li>
+                        <li><strong>Versioning:</strong> Managing changes in LLM model versions</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Future Directions</h2>
+                    <p>
+                        The integration of LLMs into structured NLP pipelines is still in its early stages. Future developments will likely include:
+                    </p>
+                    
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Local LLM Integration:</strong> Running smaller, specialized models locally for privacy and cost benefits</li>
+                        <li><strong>Hybrid Training:</strong> Training traditional models using LLM-generated data</li>
+                        <li><strong>Adaptive Pipelines:</strong> Systems that dynamically choose between traditional and LLM components</li>
+                        <li><strong>Specialized Models:</strong> Domain-specific LLMs optimized for particular NLP tasks</li>
+                        <li><strong>Multi-modal Integration:</strong> Combining text processing with image and audio understanding</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Conclusion</h2>
+                    <p>
+                        The integration of large language models into structured NLP pipelines represents an exciting frontier in natural language processing. By thoughtfully combining the reliability and efficiency of traditional approaches with the flexibility and power of LLMs, we can build systems that are both robust and capable of handling complex, nuanced language understanding tasks.
+                    </p>
+
+                    <p>
+                        The spacy-llm extension provides a practical framework for this integration, allowing developers to experiment with hybrid approaches while maintaining the benefits of structured, modular pipeline design. As this field continues to evolve, we can expect to see even more sophisticated ways to combine these complementary technologies.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <div class="mt-12 flex justify-between items-center">
+            <a href="../blog.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Blog
+            </a>
+            <div class="text-sm text-gray-500">
+                NLP & Machine Learning
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p>&copy; 2024 OxyKodit. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

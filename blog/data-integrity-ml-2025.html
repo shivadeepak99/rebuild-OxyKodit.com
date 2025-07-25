@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data doesn't lie — but it can mislead: How to ensure integrity of your Machine Learning applications - OxyKodit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="../images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="h-8 w-8 mr-3">
+                    <span class="text-2xl font-bold text-gray-800">OxyKodit</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="../blog.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Data doesn't lie — but it can mislead</h1>
+                <p class="text-xl opacity-90">How to ensure integrity of your Machine Learning applications</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <article class="prose prose-lg max-w-none">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="mb-8">
+                    <p class="text-gray-600 text-sm mb-4">Published on: 31 May 2025</p>
+                </div>
+
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p>
+                        This talk identifies common pitfalls and illustrate them with real-world examples from nearly two decades of experience in the data science field. We explore the hidden story behind the performance metrics, moving beyond a single F-measure or accuracy score to delve into the intricacies of the data set and its domain.
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Deceptive Nature of Data</h2>
+                    <p>
+                        After nearly two decades in data science, I've learned that data's greatest strength—its apparent objectivity—can also be its most dangerous weakness. Numbers don't lie, but they can certainly mislead when we don't understand the context, collection methods, and hidden biases that shape them.
+                    </p>
+
+                    <div class="bg-red-50 border-l-4 border-red-400 p-6 my-8">
+                        <p class="text-red-800 italic">
+                            "The most dangerous phrase in data science isn't 'correlation doesn't imply causation'—it's 'the model is 95% accurate.' Without understanding what that really means, you're building castles on quicksand."
+                        </p>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Common Pitfalls That Destroy ML Projects</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">1. The Accuracy Illusion</h3>
+                    <p>
+                        A single accuracy metric can hide catastrophic problems:
+                    </p>
+                    
+                    <div class="bg-gray-100 p-6 rounded-lg my-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">Real-World Example: Medical Diagnosis System</h4>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Reported:</strong> 95% accuracy on disease detection
+                        </p>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Reality:</strong> Dataset was 95% healthy patients, so the model learned to always predict "healthy"
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <strong>Impact:</strong> 100% of actual disease cases were missed—a catastrophic failure disguised as success
+                        </p>
+                    </div>
+
+                    <p>
+                        <strong>Key Lesson:</strong> Always examine class distribution and use appropriate metrics like precision, recall, F1-score, and AUC-ROC for imbalanced datasets.
+                    </p>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. Data Leakage: The Silent Killer</h3>
+                    <p>
+                        Information from the future contaminating your model's training data:
+                    </p>
+
+                    <div class="bg-gray-100 p-6 rounded-lg my-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">Real-World Example: Stock Price Prediction</h4>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Problem:</strong> Used next-day trading volume to predict next-day price
+                        </p>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Lab Performance:</strong> 98% accuracy
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <strong>Production Reality:</strong> Model failed completely—trading volume isn't known until after the market closes
+                        </p>
+                    </div>
+
+                    <p>
+                        <strong>Prevention Strategies:</strong>
+                    </p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Strict temporal splits in time-series data</li>
+                        <li>Careful feature engineering review</li>
+                        <li>Cross-validation that respects data collection timeline</li>
+                        <li>Domain expert validation of feature selection</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3. Selection Bias: The Invisible Filter</h3>
+                    <p>
+                        When your training data doesn't represent your real-world application:
+                    </p>
+
+                    <div class="bg-gray-100 p-6 rounded-lg my-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">Real-World Example: Hiring Algorithm</h4>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Training Data:</strong> Resumes of previously hired employees (all successful candidates)
+                        </p>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Missing Data:</strong> Rejected candidates who might have been successful
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <strong>Result:</strong> Model perpetuated historical biases and missed diverse talent
+                        </p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">4. Distribution Shift: When the World Changes</h3>
+                    <p>
+                        Models trained on historical data often fail when patterns evolve:
+                    </p>
+
+                    <div class="bg-gray-100 p-6 rounded-lg my-6">
+                        <h4 class="font-semibold text-gray-800 mb-3">Real-World Example: Fraud Detection During COVID-19</h4>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>Pre-2020:</strong> Model detected fraud based on unusual spending patterns
+                        </p>
+                        <p class="text-sm text-gray-700 mb-2">
+                            <strong>2020 Reality:</strong> Everyone's spending patterns changed overnight
+                        </p>
+                        <p class="text-sm text-gray-700">
+                            <strong>Impact:</strong> Massive false positives blocking legitimate transactions
+                        </p>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Metrics That Matter: Beyond Accuracy</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Comprehensive Evaluation Framework</h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <h4 class="font-semibold text-blue-800 mb-3">Classification Metrics</h4>
+                            <ul class="text-sm text-blue-700 space-y-1">
+                                <li>• Precision & Recall per class</li>
+                                <li>• F1-score (macro and weighted)</li>
+                                <li>• AUC-ROC and AUC-PR curves</li>
+                                <li>• Confusion matrix analysis</li>
+                                <li>• Matthews Correlation Coefficient</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <h4 class="font-semibold text-green-800 mb-3">Business Impact Metrics</h4>
+                            <ul class="text-sm text-green-700 space-y-1">
+                                <li>• Cost of false positives vs negatives</li>
+                                <li>• Revenue impact analysis</li>
+                                <li>• User experience degradation</li>
+                                <li>• Regulatory compliance risks</li>
+                                <li>• Long-term customer trust</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Fairness and Bias Metrics</h3>
+                    <p>
+                        Technical excellence means nothing if your model perpetuates or amplifies societal biases:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Demographic Parity:</strong> Equal positive prediction rates across groups</li>
+                        <li><strong>Equalized Odds:</strong> Equal true/false positive rates across groups</li>
+                        <li><strong>Calibration:</strong> Prediction confidence matches actual outcomes across groups</li>
+                        <li><strong>Individual Fairness:</strong> Similar individuals receive similar predictions</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Building Robust Evaluation Practices</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">1. Multi-Dimensional Validation</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Temporal Validation:</strong> Test on different time periods</li>
+                        <li><strong>Geographic Validation:</strong> Ensure performance across regions</li>
+                        <li><strong>Demographic Validation:</strong> Test across different user groups</li>
+                        <li><strong>Edge Case Testing:</strong> Evaluate on corner cases and outliers</li>
+                        <li><strong>Adversarial Testing:</strong> Test against intentional manipulation</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. Continuous Monitoring Framework</h3>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 my-8">
+                        <h4 class="font-semibold text-yellow-800 mb-3">Production Monitoring Checklist</h4>
+                        <ul class="text-sm text-yellow-700 space-y-1">
+                            <li>✓ Model performance degradation alerts</li>
+                            <li>✓ Data distribution shift detection</li>
+                            <li>✓ Bias metrics monitoring</li>
+                            <li>✓ Business impact tracking</li>
+                            <li>✓ User feedback integration</li>
+                            <li>✓ A/B testing for model updates</li>
+                        </ul>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3. Human-in-the-Loop Validation</h3>
+                    <p>
+                        Technology alone isn't enough—human expertise is crucial for:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Domain Knowledge Integration:</strong> Subject matter experts reviewing model decisions</li>
+                        <li><strong>Interpretability Analysis:</strong> Understanding why models make specific predictions</li>
+                        <li><strong>Error Analysis:</strong> Systematic review of model failures</li>
+                        <li><strong>Ethical Review:</strong> Assessing societal impact and fairness implications</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Case Study: Rebuilding Trust After Failure</h2>
+                    
+                    <div class="bg-gray-100 p-8 rounded-lg my-8">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">The Credit Scoring Disaster</h3>
+                        
+                        <p class="text-sm text-gray-700 mb-4">
+                            <strong>Initial Problem:</strong> A major bank's new ML-based credit scoring system showed 15% improvement in default prediction accuracy during testing.
+                        </p>
+                        
+                        <p class="text-sm text-gray-700 mb-4">
+                            <strong>Production Reality:</strong> The model systematically denied credit to qualified applicants from certain zip codes, triggering regulatory investigation and massive legal liability.
+                        </p>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">Root Cause Analysis:</h4>
+                        <ul class="text-sm text-gray-700 space-y-1 mb-4">
+                            <li>• Training data included historical decisions influenced by redlining practices</li>
+                            <li>• Zip code proxied for protected characteristics</li>
+                            <li>• No fairness metrics were evaluated during development</li>
+                            <li>• Domain experts weren't involved in feature selection</li>
+                        </ul>
+                        
+                        <h4 class="font-semibold text-gray-800 mb-2">Recovery Strategy:</h4>
+                        <ul class="text-sm text-gray-700 space-y-1">
+                            <li>• Complete data audit with external bias consultants</li>
+                            <li>• Implemented comprehensive fairness testing framework</li>
+                            <li>• Added human review for all edge cases</li>
+                            <li>• Regular model retraining with bias correction</li>
+                            <li>• Transparent reporting to regulators and public</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Data Quality: The Foundation of Trust</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">The Data Quality Pyramid</h3>
+                    <div class="space-y-4">
+                        <div class="bg-red-100 p-4 rounded">
+                            <strong class="text-red-800">Level 4 - Relevance:</strong> Does the data answer your business question?
+                        </div>
+                        <div class="bg-orange-100 p-4 rounded">
+                            <strong class="text-orange-800">Level 3 - Representativeness:</strong> Does it reflect your real-world scenario?
+                        </div>
+                        <div class="bg-yellow-100 p-4 rounded">
+                            <strong class="text-yellow-800">Level 2 - Consistency:</strong> Are definitions and formats standardized?
+                        </div>
+                        <div class="bg-green-100 p-4 rounded">
+                            <strong class="text-green-800">Level 1 - Completeness:</strong> Is the data complete and accessible?
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Practical Data Validation Steps</h3>
+                    <ol class="list-decimal pl-6 space-y-2">
+                        <li><strong>Data Profiling:</strong> Understand distributions, missing values, and outliers</li>
+                        <li><strong>Schema Validation:</strong> Ensure data types and formats are consistent</li>
+                        <li><strong>Business Rule Validation:</strong> Check against domain-specific constraints</li>
+                        <li><strong>Temporal Consistency:</strong> Verify logical time-based relationships</li>
+                        <li><strong>Cross-Source Validation:</strong> Compare against independent data sources</li>
+                    </ol>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Creating a Culture of Data Integrity</h2>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Organizational Best Practices</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li><strong>Cross-Functional Teams:</strong> Include domain experts, ethicists, and end users</li>
+                        <li><strong>Skeptical Thinking:</strong> Reward questioning assumptions and challenging results</li>
+                        <li><strong>Failure Documentation:</strong> Create a blame-free environment for reporting problems</li>
+                        <li><strong>Regular Audits:</strong> Schedule periodic reviews of model performance and fairness</li>
+                        <li><strong>Transparency Requirements:</strong> Document and communicate model limitations</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Building Institutional Knowledge</h3>
+                    <p>
+                        Individual expertise isn't enough—organizations need systems to capture and share lessons:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Model cards documenting intended use and limitations</li>
+                        <li>Post-mortem processes for failed deployments</li>
+                        <li>Knowledge sharing sessions across teams</li>
+                        <li>Standardized evaluation frameworks and checklists</li>
+                        <li>Regular training on bias detection and mitigation</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Looking Forward: The Path to Trustworthy AI</h2>
+                    <p>
+                        Data integrity isn't a one-time achievement—it's an ongoing commitment. As ML systems become more complex and consequential, our responsibility for ensuring their reliability grows. The cost of getting it wrong isn't just technical failure—it's lost trust, regulatory backlash, and real harm to real people.
+                    </p>
+
+                    <p>
+                        The most successful ML practitioners I know share one trait: healthy skepticism about their own results. They understand that impressive metrics are just the beginning of the conversation, not the end. They invest as much energy in understanding their models' failures as celebrating their successes.
+                    </p>
+
+                    <div class="bg-blue-50 border-l-4 border-blue-400 p-6 my-8">
+                        <p class="text-blue-800 italic">
+                            "The goal isn't to build perfect models—it's to build models whose imperfections we understand well enough to use them responsibly."
+                        </p>
+                    </div>
+
+                    <p>
+                        Remember: data doesn't lie, but it doesn't tell the whole truth either. Our job as practitioners is to ask the right questions, look beyond the obvious metrics, and build systems that serve not just our technical goals, but the broader good of society.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <div class="mt-12 flex justify-between items-center">
+            <a href="../blog.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Blog
+            </a>
+            <div class="text-sm text-gray-500">
+                Machine Learning Ethics
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p>&copy; 2025 OxyKodit. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

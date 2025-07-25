@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog – OxyKodit</title>
+    <meta name="description" content="Sofie's Blog - Insights on NLP, Machine Learning, and AI">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'oxy-primary': '#669990',
+                        'oxy-primary-dark': '#4a7c7c',
+                        'oxy-dark': '#324a51',
+                        'oxy-light': '#6f8085',
+                        'oxy-bg': '#f9f9f9',
+                        'oxy-accent': '#8bb5a8',
+                        'oxy-secondary': '#a7c4bc',
+                        // Dark mode colors
+                        'dark-bg': '#0f172a',
+                        'dark-surface': '#1e293b',
+                        'dark-primary': '#7dd3fc',
+                        'dark-text': '#f1f5f9',
+                        'dark-accent': '#38bdf8'
+                    },
+                    fontFamily: {
+                        'heading': ['Cardo', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="./styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./images/OxyKodit_Logo_empty.png" type="image/png">
+</head>
+<body class="bg-oxy-bg dark:bg-dark-bg text-oxy-dark dark:text-dark-text font-body leading-relaxed transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300">
+        <ul class="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm rounded-xl px-6 py-3 flex space-x-6 text-sm font-medium shadow-lg border border-gray-200/20 dark:border-gray-700/20">
+            <li><a href="index.html" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Home</a></li>
+            <li><a href="index.html#intro" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Introduction</a></li>
+            <li><a href="index.html#projects" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Projects</a></li>
+            <li><a href="blog.html" class="text-oxy-primary dark:text-dark-primary font-semibold">Blog</a></li>
+            <li><a href="index.html#contact" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-sky-300 via-emerald-200 to-oxy-accent dark:from-slate-900 dark:via-slate-800 dark:to-dark-surface">
+        <!-- Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-sky-300/80 via-emerald-200/60 to-oxy-accent/40 dark:from-slate-900/90 dark:via-slate-800/70 dark:to-dark-surface/50 transition-colors duration-500"></div>
+        
+        <!-- Mountains -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1200 300" class="w-full h-auto drop-shadow-2xl">
+                <polygon points="0,300 0,200 200,150 400,180 600,120 800,160 1000,100 1200,140 1200,300" fill="#7dd3fc" class="dark:fill-slate-700" opacity="0.4"/>
+                <polygon points="0,300 0,220 150,180 350,200 550,140 750,180 950,120 1200,160 1200,300" fill="#38bdf8" class="dark:fill-slate-600" opacity="0.6"/>
+                <polygon points="0,300 0,240 100,200 300,220 500,180 700,210 900,160 1200,200 1200,300" fill="#0ea5e9" class="dark:fill-slate-500" opacity="0.8"/>
+            </svg>
+        </div>
+        
+        <!-- Header Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <div class="mb-8">
+                <img src="./images/Blog.jpg" alt="Blog" class="w-32 h-32 mx-auto mb-6 drop-shadow-2xl rounded-full border-4 border-white/30 dark:border-dark-primary/30">
+            </div>
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white dark:text-dark-text mb-6 drop-shadow-2xl">
+                Sofie's Blog
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl text-white/95 dark:text-dark-text/90 font-light leading-relaxed drop-shadow-lg">
+                Insights on NLP, Machine Learning, and AI
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="relative z-10 bg-oxy-bg dark:bg-dark-bg transition-colors duration-300 py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            
+            <!-- Featured Blog Posts -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Blog Post 1 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">11 June 2025</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/inside_the_black_box.png" alt="Title slide of the presentation" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/openweight.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                Inside the black box: What open-weight LLMs today can (and can't) do
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            The recent wave of open-weight LLMs are leveling the playing field – allowing developers to build robust, privacy-friendly and cost-efficient NLP applications with full control and ownership. But which open model suits your application best?
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/openweight.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 2 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">31 May 2025</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/keynote_pyconitalia.jpg" alt="Video banner for Youtube" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/pycon_italia.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                Data doesn't lie — but it can mislead: How to ensure integrity of your ML applications
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            This talk identifies common pitfalls and illustrate them with real-world examples from nearly two decades of experience in the data science field. We explore the hidden story behind the performance metrics, moving beyond a single F-measure or accuracy score.
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/pycon_italia.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 3 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">24 January 2024</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/2024_01_23_az.png" alt="Slide showing how to use built-in zero-shot NER with spacy-llm" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/az_2024.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                From quick prototyping with LLMs to more reliable and efficient NLP solutions
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            At AstraZeneca's NLP Community of Practice, I talked about how to use LLMs for fast prototyping in NLP applications, with a specific focus on mining clinical trials.
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/az_2024.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 4 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">12 March 2025</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/Blog.jpg" alt="Gemma 3 models" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/gemma_3.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                Gemma 3 open-weights models
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            I was fortunate to be invited to the Gemma Developer Day at Google Paris, where the Gemma 3 family of open-weight models was officially launched.
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/gemma_3.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 5 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">28 June 2024</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/Blog.jpg" alt="Open source maintainer interview" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/once-a-maintainer-sofie-van-landeghem.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                Once a Maintainer: Sofie Van Landeghem
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            Allison Pike interviewed me about my work as a core maintainer of spaCy and Typer. We ended up talking about how I got into NLP in the first place, the disconnect between research and industry applications, and how to manage an Open-Source project.
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/once-a-maintainer-sofie-van-landeghem.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Blog Post 6 -->
+                <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group">
+                    <div class="p-8">
+                        <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-4 font-medium">16 June 2024</div>
+                        <div class="mb-6 overflow-hidden rounded-xl">
+                            <img src="./images/Blog.jpg" alt="ML bias detection" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
+                        </div>
+                        <h2 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                            <a href="blog/pydata_london.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                How to uncover and avoid structural biases in your ML projects
+                            </a>
+                        </h2>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            Even with today's impressive zero-shot LLM capabilities, the success of any NLP project can be predicted by the quality of the data it's built on. First and foremost, you need a representative evaluation data set to measure progress and performance throughout the development of your NLP pipeline.
+                        </p>
+                        <div class="mt-6">
+                            <a href="blog/pydata_london.html" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                Read more
+                                <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+
+            <!-- Additional Blog Posts Grid -->
+            <div class="mt-16">
+                <h3 class="text-3xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-8 text-center">More Blog Posts</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    
+                    <!-- PhD Blog Post -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">27 April 2012</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            <a href="blog/phd.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                PhD thesis: Playing hide and seek on the genomic playground
+                            </a>
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            My PhD thesis focuses on the field of natural language processing for biomolecular texts, or "BioNLP". It discuss novel approaches to event extraction and the construction of a large-scale text mining resource called "EVEX".
+                        </p>
+                        <a href="blog/phd.html" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent text-sm font-medium">Read more →</a>
+                    </div>
+
+                    <!-- Available Blog Posts -->
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">2 November 2023</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            <a href="blog/oss.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                How to get the most out of your open-source contributions?
+                            </a>
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            As I'm celebrating 10 years of contributing open-source code on Github, I share some tips & tricks on how to collaborate efficiently on a code base.
+                        </p>
+                        <a href="blog/oss.html" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent text-sm font-medium">Read more →</a>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">19 June 2023</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            <a href="blog/spacy-llm.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                Integrating Large Language Models into structured NLP pipelines
+                            </a>
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this talk presented at the Belgian NLP meetup, I showcase how to build such a structured pipeline with the open-source NLP toolbox spaCy, and its recent extension 'spacy-llm'.
+                        </p>
+                        <a href="blog/spacy-llm.html" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent text-sm font-medium">Read more →</a>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">15 June 2023</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            <a href="blog/odsc_2023.html" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
+                                spaCy: A customizable NLP toolkit designed for developers
+                            </a>
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            At ODSC Europe 2023, I presented the open-source NLP toolbox spaCy, and demonstrated how Large Language Models (LLMs) can be integrated into your NLP pipelines.
+                        </p>
+                        <a href="blog/odsc_2023.html" class="text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent text-sm font-medium">Read more →</a>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">20 December 2022</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            How to maximize probability of success for your Machine Learning solution?
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            This LinkedIn post offers some tips and tricks from personal experience, helping you get the most out of your ML/NLP projects. It's all about data and iteration!
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">19 December 2022</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Multi hash embeddings in spaCy
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this technical report we lay out a bit of history and introduce the embedding methods in spaCy in detail. Further, we critically evaluate the hash embedding architecture with multi-embeddings on Named Entity Recognition datasets.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">6 October 2022</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            End-to-end Neural Coreference Resolution in spaCy
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            This blog post introduces a novel coreference implementation for spaCy. We've based our implementation on a recent incarnation of the neural paradigm published in the paper "Word-Level Coreference Resolution" by Vladimir Dobrovolskii.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">14 June 2022</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Spancat: a new approach for span labeling
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            The SpanCategorizer is a new spaCy component that answers the NLP community's need to have structured annotation for a wide variety of labeled spans, including long phrases, non-named entities, or overlapping annotations.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">1 February 2021</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Implementing a custom trainable component for relation extraction
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            This video shows how to apply the new spaCy v3 features as we work our way through implementing a new custom component from scratch. The specific challenge we are setting ourselves here is implementing a custom component to predict relationships between named entities.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">1 February 2021</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            spaCy v3.0
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            spaCy v3.0 is a huge release! It features new transformer-based pipelines that get spaCy's accuracy right up to the current state-of-the-art, and a new workflow system to help you take projects from prototype to production.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">7 May 2020</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Training a custom Entity Linking model with spaCy
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            This video tutorial shows how to use spaCy to implement and train a custom Entity Linking model that disambiguates textual mentions to unique identifiers.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">19 February 2020</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Building customizable NLP pipelines with spaCy
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            At a Turku.AI meetup, I gave a talk explaining spaCy's typical usage as well as upcoming features for the v.3 release.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">1 October 2019</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Entity linking for spaCy: Grounding textual mentions
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this talk, I present my recent work on adding Entity Linking functionality to spaCy, which allows grounding information from text into "real world" unique identifiers defined by a knowledge base (KB).
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">12 July 2019</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Entity linking functionality in spaCy
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            At spaCy IRL 2019, I presented our ongoing work on the Entity Linking functionality in spaCy, including our efforts to work with a fast and efficient in memory KB, a neural network architecture that encodes both the entity information as well as the sentence context.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">27 February 2019</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Studying the dynamic rewiring of molecular networks
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            At this Women in Tech event in Antwerp, I've given an talk showing how methods from Natural Language Processing, Data Integration and Graph Analysis all contribute to studying the dynamic rewiring of molecular networks.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">1 February 2019</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Increasing tokenization speed across spaCy's core languages
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            As one of my first core contributions to the spaCy open-source NLP library – this PR increases tokenization speed with a factor of 2-3 across all languages.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">27 June 2018</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Developing a cocktail generator that optimizes your drink to your taste
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In the past few months working at Foodpairing in Gent, I've been working on a revamped version of our cocktail generator. Testing the algorithms means tasting the cocktails it produces – resulting in a delicious afternoon at work!
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">1 October 2016</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            TEDxBigData: Machine Learning & Natural Language Processing
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            I had the opportunity to present at a TEDxBigData event organized by J&J. In this talk, I shared my enthousiasm and love for Natural Language Processing by giving some examples of ambiguities in natural language.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">15 January 2016</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Cell line name recognition in support of the identification of synthetic lethality in cancer from text
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this study, we revisit the cell line name recognition task, evaluating both available systems and newly introduced methods on various resources.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">5 January 2016</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Diffany: an ontology-driven framework to infer, visualise and analyse differential molecular networks
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this work, we present a generic, ontology-driven framework to infer, visualise and analyse an arbitrary set of condition-specific responses against one reference network.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">5 May 2015</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            The KnownLeaf literature curation system
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            We constructed an annotation framework for the curation of the scientific literature studying the molecular mechanisms that control leaf growth and development in Arabidopsis thaliana.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">9 August 2013</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            EVEX in ST'13: Application of a large-scale text mining resource to event extraction and network construction
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this paper, we describe our participation in the latest BioNLP Shared Task using the large-scale text mining resource EVEX.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">17 April 2013</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Large-scale event extraction from literature with multi-level gene normalization
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            We have combined two state-of-the-art text mining components to perform normalization and event extraction on all 1.9 million PubMed abstracts and 460 thousand PubMed Central open access full-text articles.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">25 March 2013</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            The Potential of Text Mining in Data Integration and Network Biology for Plant Research: A Case Study on Arabidopsis
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this study published in Plant Cell, we assess the potential of large-scale text mining for plant biology research in general and for network biology in particular.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">11 June 2011</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            EVEX: a PubMed-scale resource for homology-based generalization of text mining predictions
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            Accounting for lexical variation of gene symbols, we have implemented a disambiguation algorithm that uniquely links the arguments of 11.2 million biomolecular events to well-defined gene families.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">4 September 2010</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Discriminative and informative features for biomolecular text mining with ensemble feature selection
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            In this study published in Bioinformatics, we show how feature selection can be used to improve state-of-the-art text mining algorithms.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">5 June 2009</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Analyzing text in search of bio-molecular events
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            We participated in the BioNLP Shared Task on Event Extraction with an SVM-based implementation to extract biomolecular events from text. Out of 24 participating NLP teams world-wide, we ranked 5th.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                    <div class="bg-white dark:bg-dark-surface rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300">
+                        <div class="text-xs text-oxy-light dark:text-dark-text/70 mb-2">23 June 2007</div>
+                        <h3 class="text-lg font-heading font-bold text-oxy-dark dark:text-dark-text mb-3">
+                            Master thesis: Automated information retrieval and data mining for bio-informatics
+                        </h3>
+                        <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed mb-4">
+                            For my Master Thesis, I have developed GeneFetch, a system that enables biologists to easily find and browse vital information on any gene or group of genes.
+                        </p>
+                        <span class="text-oxy-light dark:text-dark-text/60 text-sm">Coming soon</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Note about additional content -->
+            <div class="text-center mt-16 p-8 bg-gradient-to-r from-oxy-primary/10 to-oxy-secondary/10 dark:from-dark-primary/10 dark:to-dark-accent/10 rounded-2xl border border-oxy-primary/20 dark:border-dark-primary/20">
+                <h3 class="text-2xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4">Extensive Blog Archive</h3>
+                <p class="text-oxy-dark dark:text-dark-text/80 leading-relaxed">
+                    This represents a curated selection from Sofie's extensive blog archive spanning over 15 years of research and industry experience. The complete collection includes dozens of additional posts covering topics from cocktail generators to biomolecular text mining, TEDx talks, and pioneering work in computational biology.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-oxy-dark via-oxy-primary to-oxy-dark dark:from-dark-surface dark:via-dark-bg dark:to-dark-surface text-white py-20 px-6 transition-colors duration-300">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-16">
+                <h2 class="text-4xl font-heading font-bold mb-6">Looking for a custom NLP solution?</h2>
+                <div class="w-24 h-1 bg-white/30 mx-auto rounded-full mb-8"></div>
+                <p class="text-xl text-white/90 leading-relaxed">
+                    Please contact me via: 
+                    <a href="mailto:sofie@oxykodit.com" class="text-oxy-accent dark:text-dark-primary underline hover:text-white transition-colors duration-200 font-semibold inline-flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                        sofie@oxykodit.com
+                    </a>
+                </p>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-8 mb-16">
+                <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-linkedin text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+                <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fas fa-graduation-cap text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+                <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-github-alt text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-youtube text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+                <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-twitter text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+                <a href="mailto:Sofie@oxykodit.com" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fas fa-envelope text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8">
+                <p class="text-white/70 text-sm mb-4">
+                    &copy; Copyright 2019 – 2025 | OxyKodit BV
+                </p>
+                <p class="text-white/60 text-xs leading-relaxed bg-white/5 rounded-lg p-4 border border-white/10">
+                    Site lovingly rebuilt by <a href="https://github.com/shivadeepak99" class="text-oxy-accent dark:text-dark-primary underline hover:text-white transition-colors duration-200">shivadeepak99</a> — tribute to svlandeg's original OxyWeb (2017).
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

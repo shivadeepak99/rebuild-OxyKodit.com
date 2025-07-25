@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What open-weight LLMs today can (and can't) do - OxyKodit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../styles.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for consistent layout */
+        .blog-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .blog-image {
+            width: 60%;
+            display: block;
+            margin: 2rem auto;
+            border-radius: 8px;
+        }
+        .blog-content {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #333;
+        }
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+        .blog-meta {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .blog-meta p {
+            margin: 0.5rem 0;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-50 to-blue-50 min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm z-50 border-b">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="../index.html" class="text-2xl font-bold text-purple-600">OxyKodit</a>
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-700 hover:text-purple-600 transition-colors">Home</a>
+                    <a href="../blog.html" class="text-gray-700 hover:text-purple-600 transition-colors">Blog</a>
+                    <a href="../index.html#projects" class="text-gray-700 hover:text-purple-600 transition-colors">Projects</a>
+                    <a href="../index.html#contact" class="text-gray-700 hover:text-purple-600 transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+        <div class="blog-container">
+            <!-- Back to Blog Link -->
+            <div class="mb-8">
+                <a href="../blog.html" class="text-purple-600 hover:text-purple-800 transition-colors flex items-center">
+                    ← Back to Blog
+                </a>
+            </div>
+
+            <!-- Blog Header -->
+            <div class="text-center mb-8">
+                <div class="mb-4">
+                    <img src="../images/Blog.jpg" alt="Sofie Van Landeghem" class="w-24 h-24 rounded-full mx-auto border-4 border-white shadow-lg">
+                </div>
+                <time class="text-gray-500 text-sm">11 June 2025</time>
+            </div>
+
+            <!-- Featured Image -->
+            <img src="../images/inside_the_black_box.png" alt="What open-weight LLMs today can (and can't) do" class="blog-image">
+
+            <!-- Blog Title -->
+            <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">What open-weight LLMs today can (and can't) do</h1>
+
+            <!-- Blog Content -->
+            <div class="blog-content">
+                <p>The recent wave of open-weight LLMs are leveling the playing field – allowing developers to build robust, privacy-friendly and cost-efficient NLP applications with full control and ownership. Instead of relying on a closed model like GPT4, Claude or Gemini, you now have the luxury of choice when picking an open model to run/deploy locally or on your favourite cloud.</p>
+
+                <p>But which open model suits your application best?</p>
+
+                <p>🦜 For multi-linguality, go with the recent DeepSeek AI v3, Google DeepMind's Gemma 3 (except 1b) or Qwen 3, which are all supporting more than 100 languages. If you need to cover multi-modality, there's a huge variety to pick from, including Gemma 3 or DeepSeek Janus Pro.</p>
+
+                <p>🤖 Good reasoning models include DeepSeek R1, Qwen 3, Tencent's HunYuan Turbo S and Magistral (released by Mistral AI 2 days ago). Agentic support like o3 and Clause is offered by Qwen 3 and Qwen-Agent, as well as as Gemma 3.</p>
+
+                <p>📚 If you need a looooong context window, Meta's Llama 4 has got you covered with Maverick (1M) & Scout (10M !!!). In fact, most recent open models support at least 128K tokens, which is pretty much a full novel.</p>
+
+                <p>🐞 Size matters – so if you want to run on mobile or edge devices, you can pick any of the 1B models (e.g. Qwen 3, Falcon 3, Llama 3), a SmolLM by Hugging Face, or a larger one if your hardware can handle it. Remember, a quantized version of a larger model often works better than an original smaller model.</p>
+
+                <p>👩‍🏫 Plenty of open MoE models available as well if you're looking to maximise cost efficiency. There's Llama 4 Maverick (400B, 17B active), OLMoE (7B, 1.3 active) or Mixtral (46.7B, 12.9B active), among others.</p>
+
+                <p>✨ Finally, a shout out to Ai2 and their truly open source model OLMo. Great to see the data, training code and evaluations all fully available, allowing actual reproduction and better tracking of data sources. Love this! 🫶</p>
+            </div>
+
+            <!-- Blog Meta Information -->
+            <div class="blog-meta">
+                <p><strong>→ Slides</strong>: <a href="https://speakerdeck.com/sofievl/2025-06-11-ai-belgium" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800">Speakerdeck</a></p>
+                <p><strong>→ Venue</strong>: AI Belgium meetup (Brussels)</p>
+                <p><strong>→ Full article</strong>: <a href="https://www.linkedin.com/posts/sofievanlandeghem_2025-06-11-aibelgium-activity-7338936339570061313-W7UH/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800">LinkedIn</a></p>
+            </div>
+
+            <!-- Contact Section -->
+            <div class="bg-purple-100 rounded-lg p-8 text-center mt-12">
+                <h2 class="text-2xl font-bold mb-4">Looking for a custom NLP solution?</h2>
+                <p class="text-gray-700 mb-6">Please contact me via: <a href="mailto:sofie@oxykodit.com" class="text-purple-600 hover:text-purple-800 font-semibold">sofie@oxykodit.com</a></p>
+                
+                <!-- Social Links -->
+                <div class="flex justify-center space-x-6">
+                    <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fas fa-graduation-cap"></i>
+                    </a>
+                    <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:Sofie@oxykodit.com" target="_blank" rel="noopener" class="text-purple-600 hover:text-purple-800 text-2xl">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-6 mt-12">
+        <div class="max-w-6xl mx-auto px-6">
+            <p>&copy; Copyright 2019 - <span id="current-year"></span> | OxyKodit BV</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to uncover and avoid structural biases in your ML projects - OxyKodit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <img src="../images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="h-8 w-8 mr-3">
+                    <span class="text-2xl font-bold text-gray-800">OxyKodit</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="../index.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="../blog.html" class="text-gray-600 hover:text-blue-600 transition duration-300">Blog</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-red-600 to-orange-600 text-white py-16">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">How to uncover and avoid structural biases in your ML projects</h1>
+                <p class="text-xl opacity-90">Building fair and representative machine learning systems</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Content -->
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <article class="prose prose-lg max-w-none">
+            <div class="bg-white rounded-lg shadow-lg p-8">
+                <div class="mb-8">
+                    <p class="text-gray-600 text-sm mb-4">Published on: 16 June 2024</p>
+                </div>
+
+                <div class="space-y-6 text-gray-700 leading-relaxed">
+                    <p>
+                        Even with today's impressive zero-shot LLM capabilities, the success of any NLP project can be predicted by the quality of the data it's built on. First and foremost, you need a representative evaluation data set to measure progress and performance throughout the development of your NLP pipeline.
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">The Foundation: Data Quality</h2>
+                    <p>
+                        The quality of your machine learning model is fundamentally limited by the quality of your training data. Structural biases can creep in at multiple stages:
+                    </p>
+                    
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Data collection methodology and sampling strategies</li>
+                        <li>Annotation guidelines and annotator demographics</li>
+                        <li>Historical biases embedded in existing datasets</li>
+                        <li>Selection criteria that inadvertently exclude certain groups</li>
+                        <li>Temporal shifts and evolving language patterns</li>
+                    </ul>
+
+                    <div class="bg-red-50 border-l-4 border-red-400 p-6 my-8">
+                        <p class="text-red-800 italic">
+                            "Bias in ML systems isn't just a technical problem—it's a reflection of the biases present in our data collection, annotation processes, and evaluation methodologies."
+                        </p>
+                    </div>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Common Sources of Structural Bias</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">1. Sampling Bias</h3>
+                    <p>
+                        When your training data doesn't represent the full population your model will encounter in production. This includes:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Geographic or demographic underrepresentation</li>
+                        <li>Temporal clustering of data points</li>
+                        <li>Platform-specific language patterns</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">2. Annotation Bias</h3>
+                    <p>
+                        Human annotators bring their own perspectives and biases to the labeling process:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-1">
+                        <li>Cultural and linguistic backgrounds of annotators</li>
+                        <li>Inconsistent annotation guidelines</li>
+                        <li>Fatigue and attention effects during annotation</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">3. Historical Bias</h3>
+                    <p>
+                        Existing datasets may embed historical inequalities and stereotypes that we don't want to perpetuate in our models.
+                    </p>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Strategies for Detection</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Data Exploration and Analysis</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Comprehensive demographic analysis of your dataset</li>
+                        <li>Statistical testing for representation across different groups</li>
+                        <li>Temporal analysis to identify time-based patterns</li>
+                        <li>Correlation analysis between sensitive attributes and labels</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Model Performance Analysis</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Disaggregated evaluation across demographic groups</li>
+                        <li>Fairness metrics beyond overall accuracy</li>
+                        <li>Error analysis to identify systematic failures</li>
+                        <li>Adversarial testing with edge cases</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Mitigation Strategies</h2>
+                    
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Data-Level Interventions</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Stratified sampling to ensure representative coverage</li>
+                        <li>Data augmentation to balance underrepresented groups</li>
+                        <li>Careful curation and filtering of training data</li>
+                        <li>Multiple annotation rounds with diverse annotator pools</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Algorithm-Level Interventions</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Fairness-aware training objectives</li>
+                        <li>Regularization techniques to reduce bias amplification</li>
+                        <li>Ensemble methods with diverse model architectures</li>
+                        <li>Post-processing calibration for fairness</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-gray-800 mt-6 mb-3">Process-Level Interventions</h3>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Diverse teams in data collection and model development</li>
+                        <li>Regular bias audits throughout the development lifecycle</li>
+                        <li>Stakeholder involvement from affected communities</li>
+                        <li>Transparent reporting of model limitations and biases</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Building Representative Evaluation Sets</h2>
+                    <p>
+                        A representative evaluation dataset should:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Reflect the demographic diversity of your target population</li>
+                        <li>Include edge cases and challenging examples</li>
+                        <li>Cover temporal variations in language and content</li>
+                        <li>Enable disaggregated analysis across different groups</li>
+                        <li>Be regularly updated to reflect changing patterns</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Continuous Monitoring</h2>
+                    <p>
+                        Bias detection and mitigation isn't a one-time activity. Implement continuous monitoring to:
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>Track model performance across different groups over time</li>
+                        <li>Detect drift in data distributions</li>
+                        <li>Monitor for emergent biases in production</li>
+                        <li>Establish feedback loops for bias reporting</li>
+                    </ul>
+
+                    <h2 class="text-2xl font-semibold text-gray-800 mt-8 mb-4">Conclusion</h2>
+                    <p>
+                        Addressing structural bias in ML projects requires intentionality, diverse perspectives, and continuous vigilance. By implementing comprehensive bias detection and mitigation strategies throughout the ML lifecycle, we can build more fair, reliable, and inclusive AI systems that better serve all users.
+                    </p>
+                </div>
+            </div>
+        </article>
+
+        <!-- Navigation -->
+        <div class="mt-12 flex justify-between items-center">
+            <a href="../blog.html" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Blog
+            </a>
+            <div class="text-sm text-gray-500">
+                Machine Learning Ethics
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p>&copy; 2024 OxyKodit. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
