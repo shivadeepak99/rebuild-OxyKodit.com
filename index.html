@@ -12,17 +12,47 @@
     <!-- Custom Tailwind Config -->
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
                         'oxy-primary': '#669990',
+                        'oxy-primary-dark': '#4a7c7c',
                         'oxy-dark': '#324a51',
                         'oxy-light': '#6f8085',
                         'oxy-bg': '#f9f9f9',
+                        'oxy-accent': '#8bb5a8',
+                        'oxy-secondary': '#a7c4bc',
+                        // Dark mode colors
+                        'dark-bg': '#0f172a',
+                        'dark-surface': '#1e293b',
+                        'dark-primary': '#7dd3fc',
+                        'dark-text': '#f1f5f9',
+                        'dark-accent': '#38bdf8'
                     },
                     fontFamily: {
                         'heading': ['Cardo', 'serif'],
                         'body': ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'slide-up': 'slideUp 0.6s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(40px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
                     }
                 }
             }
@@ -43,7 +73,7 @@
     <!-- Favicon -->
     <link rel="icon" href="images/OxyKodit_Logo_empty.png" type="image/png">
 </head>
-<body class="bg-oxy-bg text-oxy-dark font-body leading-relaxed">
+<body class="bg-oxy-bg dark:bg-dark-bg text-oxy-dark dark:text-dark-text font-body leading-relaxed transition-colors duration-300">
     
     <!-- Skip Link -->
     <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-oxy-primary text-white px-4 py-2 rounded">
@@ -52,250 +82,292 @@
 
     <!-- Navigation -->
     <nav id="nav" class="fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300">
-        <ul class="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 flex space-x-6 text-sm font-medium shadow-lg">
-            <li><a href="#home" class="text-oxy-dark hover:text-oxy-primary transition-colors">Home</a></li>
-            <li><a href="#intro" class="text-oxy-dark hover:text-oxy-primary transition-colors">Introduction</a></li>
+        <ul class="bg-white/90 dark:bg-dark-surface/90 backdrop-blur-sm rounded-xl px-6 py-3 flex space-x-6 text-sm font-medium shadow-lg border border-gray-200/20 dark:border-gray-700/20">
+            <!-- Dark/Light Mode Toggle -->
+            <li class="flex items-center">
+                <button id="theme-toggle" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200" aria-label="Toggle theme">
+                    <svg id="sun-icon" class="w-4 h-4 text-oxy-primary dark:text-dark-primary hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="moon-icon" class="w-4 h-4 text-oxy-primary dark:text-dark-primary block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+            </li>
+            <li><a href="#home" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Home</a></li>
+            <li><a href="#intro" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Introduction</a></li>
             <li class="relative group">
-                <a href="#projects" class="text-oxy-dark hover:text-oxy-primary transition-colors">Projects</a>
-                <ul class="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48">
-                    <li><a href="#ai" class="block px-4 py-2 text-sm hover:bg-gray-50">AI Proof-of-concept</a></li>
-                    <li><a href="#prod" class="block px-4 py-2 text-sm hover:bg-gray-50">Ready for production</a></li>
-                    <li><a href="#os" class="block px-4 py-2 text-sm hover:bg-gray-50">Open-source maintenance</a></li>
+                <a href="#projects" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Projects</a>
+                <ul class="absolute top-full left-0 mt-2 bg-white dark:bg-dark-surface rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48 border border-gray-200/20 dark:border-gray-700/20">
+                    <li><a href="#ai" class="block px-4 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-700 text-oxy-dark dark:text-dark-text transition-colors duration-200">AI Proof-of-concept</a></li>
+                    <li><a href="#prod" class="block px-4 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-700 text-oxy-dark dark:text-dark-text transition-colors duration-200">Ready for production</a></li>
+                    <li><a href="#os" class="block px-4 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-700 text-oxy-dark dark:text-dark-text transition-colors duration-200">Open-source maintenance</a></li>
                 </ul>
             </li>
-            <li><a href="#blog" class="text-oxy-dark hover:text-oxy-primary transition-colors">Blog</a></li>
-            <li><a href="#contact" class="text-oxy-dark hover:text-oxy-primary transition-colors">Contact</a></li>
+            <li><a href="#blog" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Blog</a></li>
+            <li><a href="#contact" class="text-oxy-dark dark:text-dark-text hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">Contact</a></li>
         </ul>
     </nav>
 
     <!-- Header Section -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-100 via-green-50 to-oxy-bg">
-        <!-- Parallax Background Layers (Simplified for now) -->
-        <div class="absolute inset-0 bg-gradient-to-b from-sky-200 via-emerald-100 to-oxy-bg"></div>
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-sky-300 via-emerald-200 to-oxy-accent dark:from-slate-900 dark:via-slate-800 dark:to-dark-surface">
+        <!-- Enhanced Parallax Background -->
+        <div class="absolute inset-0 bg-gradient-to-b from-sky-300/80 via-emerald-200/60 to-oxy-accent/40 dark:from-slate-900/90 dark:via-slate-800/70 dark:to-dark-surface/50 transition-colors duration-500"></div>
         
-        <!-- Mountain Silhouettes (CSS-only approach) -->
-        <div class="absolute bottom-0 left-0 right-0">
-            <svg viewBox="0 0 1200 300" class="w-full h-auto">
-                <!-- Back mountains -->
-                <polygon points="0,300 0,200 200,150 400,180 600,120 800,160 1000,100 1200,140 1200,300" fill="#a7c4bc" opacity="0.6"/>
+        <!-- Enhanced Mountain Silhouettes -->
+        <div class="absolute bottom-0 left-0 right-0 animate-pulse-slow">
+            <svg viewBox="0 0 1200 300" class="w-full h-auto drop-shadow-2xl">
+                <!-- Back mountains with enhanced colors -->
+                <polygon points="0,300 0,200 200,150 400,180 600,120 800,160 1000,100 1200,140 1200,300" fill="#7dd3fc" class="dark:fill-slate-700" opacity="0.4"/>
                 <!-- Middle mountains -->
-                <polygon points="0,300 0,220 150,180 350,200 550,140 750,180 950,120 1200,160 1200,300" fill="#8bb5a8" opacity="0.7"/>
-                <!-- Front mountains -->
-                <polygon points="0,300 0,240 100,200 300,220 500,180 700,210 900,160 1200,200 1200,300" fill="#669990" opacity="0.8"/>
+                <polygon points="0,300 0,220 150,180 350,200 550,140 750,180 950,120 1200,160 1200,300" fill="#38bdf8" class="dark:fill-slate-600" opacity="0.6"/>
+                <!-- Front mountains with stronger presence -->
+                <polygon points="0,300 0,240 100,200 300,220 500,180 700,210 900,160 1200,200 1200,300" fill="#0ea5e9" class="dark:fill-slate-500" opacity="0.8"/>
             </svg>
         </div>
         
-        <!-- Header Content -->
-        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <div class="mb-8">
-                <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="w-24 h-24 mx-auto mb-6 drop-shadow-lg">
+        <!-- Header Content with enhanced animations -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto animate-fade-in">
+            <div class="mb-8 animate-float">
+                <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="w-32 h-32 mx-auto mb-6 drop-shadow-2xl rounded-full border-4 border-white/30 dark:border-dark-primary/30 hover:scale-110 transition-transform duration-300">
             </div>
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 drop-shadow-lg">
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-heading font-bold text-white dark:text-dark-text mb-6 drop-shadow-2xl animate-slide-up">
                 OxyKodit
             </h1>
-            <p id="header-intro" class="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow transition-opacity duration-1000">
+            <p id="header-intro" class="text-xl md:text-2xl lg:text-3xl text-white/95 dark:text-dark-text/90 font-light leading-relaxed drop-shadow-lg transition-opacity duration-1000 animate-slide-up" style="animation-delay: 0.2s;">
                 Tailored solutions for your Machine Learning and Text Mining projects
             </p>
+            
+            <!-- Scroll indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <svg class="w-6 h-6 text-white/70 dark:text-dark-text/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
         </div>
     </section>
 
     <!-- Main Content -->
-    <main id="main-content" class="relative z-10 bg-oxy-bg">
+    <main id="main-content" class="relative z-10 bg-oxy-bg dark:bg-dark-bg transition-colors duration-300">
         
         <!-- Introduction Section -->
-        <section id="intro" class="py-16 px-6">
+        <section id="intro" class="py-20 px-6">
             <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl font-heading font-bold text-oxy-dark mb-4">Introduction</h2>
+                <div class="text-center mb-12 animate-fade-in">
+                    <h2 class="text-4xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4">Introduction</h2>
+                    <div class="w-24 h-1 bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent mx-auto rounded-full"></div>
                 </div>
                 
-                <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
+                <div class="bg-white dark:bg-dark-surface rounded-2xl shadow-2xl p-8 md:p-12 border border-gray-100 dark:border-gray-700 hover:shadow-3xl transition-all duration-300 animate-slide-up">
                     <div class="flex items-center justify-center mb-8">
-                        <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit" class="w-16 h-16 rounded-full border-4 border-white shadow-lg mr-4">
-                        <h3 class="text-2xl font-heading font-bold text-oxy-dark">OxyKodit</h3>
+                        <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit" class="w-20 h-20 rounded-full border-4 border-oxy-primary dark:border-dark-primary shadow-lg mr-4 hover:scale-110 transition-transform duration-300">
+                        <h3 class="text-3xl font-heading font-bold text-oxy-dark dark:text-dark-text">OxyKodit</h3>
                     </div>
                     
-                    <div class="prose prose-lg max-w-none text-oxy-dark">
+                    <div class="prose prose-lg max-w-none text-oxy-dark dark:text-dark-text">
                         <p class="text-lg leading-relaxed mb-6">
-                            OxyKodit helps you unlock the power of your texts and data by implementing <strong>tailored AI solutions</strong>, ranging from Natural Language Processing (NLP) techniques to Large Language Models (LLMs) and Machine Learning (ML). Every single project is delivered on the <strong>timeline</strong> we agree upon in the initial contract, within the <strong>budget</strong> assigned to the specific <strong>deliverables and milestones</strong> we'll set out for your specific needs.
+                            OxyKodit helps you unlock the power of your texts and data by implementing <strong class="text-oxy-primary dark:text-dark-primary">tailored AI solutions</strong>, ranging from Natural Language Processing (NLP) techniques to Large Language Models (LLMs) and Machine Learning (ML). Every single project is delivered on the <strong class="text-oxy-primary dark:text-dark-primary">timeline</strong> we agree upon in the initial contract, within the <strong class="text-oxy-primary dark:text-dark-primary">budget</strong> assigned to the specific <strong class="text-oxy-primary dark:text-dark-primary">deliverables and milestones</strong> we'll set out for your specific needs.
                         </p>
                         
                         <p class="text-lg leading-relaxed mb-6">
-                            Being the founder, resident Data Scientist, chief Machine Learning Engineer, full-stack Software Developer and head of Quality Assurance all at once, I am passionate about ensuring <strong>code robustness and quality</strong> through rigorous testing, introducing proper levels of abstraction and battle-testing solutions. With a Master in Computer Science (software engineering) and a <a href="#" class="text-oxy-primary underline">PhD</a> in the field of BioNLP, I have been working in the domain <strong>since 2006</strong> and I'm familiar with both "traditional" NLP techniques as well as cutting-edge LLMs. I love designing custom algorithms and models for specific business use-cases, diving into the peculiarities of the application domain and data, and identifying ways to introduce efficiencies across business operations.
+                            Being the founder, resident Data Scientist, chief Machine Learning Engineer, full-stack Software Developer and head of Quality Assurance all at once, I am passionate about ensuring <strong class="text-oxy-primary dark:text-dark-primary">code robustness and quality</strong> through rigorous testing, introducing proper levels of abstraction and battle-testing solutions. With a Master in Computer Science (software engineering) and a <a href="#" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200">PhD</a> in the field of BioNLP, I have been working in the domain <strong class="text-oxy-primary dark:text-dark-primary">since 2006</strong> and I'm familiar with both "traditional" NLP techniques as well as cutting-edge LLMs. I love designing custom algorithms and models for specific business use-cases, diving into the peculiarities of the application domain and data, and identifying ways to introduce efficiencies across business operations.
                         </p>
                         
                         <p class="text-lg leading-relaxed mb-8">
-                            <a href="mailto:sofie@oxykodit.com" class="text-oxy-primary underline">Email me</a> to start a conversation about how we can achieve your data-driven goals together. I look forward to discussing your project!
+                            <a href="mailto:sofie@oxykodit.com" class="inline-flex items-center text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-semibold">
+                                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                                Email me
+                            </a> to start a conversation about how we can achieve your data-driven goals together. I look forward to discussing your project!
                         </p>
                         
-                        <p class="text-right text-oxy-light italic">
-                            Sofie Van Landeghem
-                        </p>
+                        <div class="border-t border-gray-200 dark:border-gray-700 pt-6">
+                            <p class="text-right text-oxy-light dark:text-dark-text/70 italic text-lg">
+                                Sofie Van Landeghem
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="py-16 px-6 bg-white">
+        <section id="projects" class="py-20 px-6 bg-white dark:bg-dark-surface transition-colors duration-300">
             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <div class="flex items-center justify-center mb-6">
-                        <img src="images/services-icon-png-2302.png" alt="Tools" class="w-16 h-16 mr-4">
-                        <h2 class="text-3xl font-heading font-bold text-oxy-dark">Project opportunities</h2>
+                <div class="text-center mb-16 animate-fade-in">
+                    <div class="flex items-center justify-center mb-8">
+                        <img src="images/services-icon-png-2302.png" alt="Tools" class="w-20 h-20 mr-4 hover:scale-110 transition-transform duration-300">
+                        <h2 class="text-4xl font-heading font-bold text-oxy-dark dark:text-dark-text">Project opportunities</h2>
                     </div>
+                    <div class="w-24 h-1 bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent mx-auto rounded-full mb-8"></div>
                 </div>
                 
-                <div class="mb-12">
-                    <p class="text-lg text-center max-w-4xl mx-auto text-oxy-dark leading-relaxed">
+                <div class="mb-16">
+                    <p class="text-xl text-center max-w-4xl mx-auto text-oxy-dark dark:text-dark-text leading-relaxed">
                         As a non-exhaustive list, OxyKodit offers the following types of projects. Each can be set up as a separate project, depending on the current phase and requirements of your specific use-case:
                     </p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8 mb-16">
-                    <div class="text-center">
-                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
-                            <div class="text-4xl font-bold mb-2">1</div>
+                <div class="grid md:grid-cols-3 gap-8 mb-20">
+                    <div class="text-center group animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="bg-gradient-to-br from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-2xl p-8 mb-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">1</div>
                             <h3 class="text-xl font-semibold">AI proof-of-concept</h3>
                         </div>
-                        <p class="text-oxy-dark">Identify ways to integrate Artificial Intelligence into your business</p>
+                        <p class="text-oxy-dark dark:text-dark-text">Identify ways to integrate Artificial Intelligence into your business</p>
                     </div>
                     
-                    <div class="text-center">
-                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
-                            <div class="text-4xl font-bold mb-2">2</div>
+                    <div class="text-center group animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="bg-gradient-to-br from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-2xl p-8 mb-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">2</div>
                             <h3 class="text-xl font-semibold">Production-grade code</h3>
                         </div>
-                        <p class="text-oxy-dark">Ensure your code base is ready for production</p>
+                        <p class="text-oxy-dark dark:text-dark-text">Ensure your code base is ready for production</p>
                     </div>
                     
-                    <div class="text-center">
-                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
-                            <div class="text-4xl font-bold mb-2">3</div>
+                    <div class="text-center group animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="bg-gradient-to-br from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-2xl p-8 mb-6 shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300">
+                            <div class="text-5xl font-bold mb-4 group-hover:scale-110 transition-transform duration-300">3</div>
                             <h3 class="text-xl font-semibold">Open-source maintenance</h3>
                         </div>
-                        <p class="text-oxy-dark">Implement features, fix bugs, and engage with the community</p>
+                        <p class="text-oxy-dark dark:text-dark-text">Implement features, fix bugs, and engage with the community</p>
                     </div>
                 </div>
 
                 <!-- Detailed Project Sections -->
-                <div class="space-y-16">
+                <div class="space-y-20">
                     <!-- AI Proof-of-concept -->
-                    <div id="ai" class="bg-gray-50 rounded-xl p-8">
-                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">1. AI proof-of-concept</h3>
+                    <div id="ai" class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-bg/50 dark:to-dark-surface/50 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50">
+                        <h3 class="text-3xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-8 flex items-center">
+                            <span class="bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-xl font-bold">1</span>
+                            AI proof-of-concept
+                        </h3>
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
-                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">What we do:</h4>
-                                <ul class="space-y-2 text-oxy-dark">
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Perform thorough analysis of business cases
+                                <h4 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mb-6 flex items-center">
+                                    <svg class="w-6 h-6 mr-3 text-oxy-primary dark:text-dark-primary" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    What we do:
+                                </h4>
+                                <ul class="space-y-3 text-oxy-dark dark:text-dark-text">
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Perform thorough analysis of business cases</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Analyze available data sources for quality and signal
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Analyze available data sources for quality and signal</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Implement annotation frameworks
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Implement annotation frameworks</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Design suitable LLM and NLP strategies
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Design suitable LLM and NLP strategies</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Analyze trade-offs between closed and open-source models
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Analyze trade-offs between closed and open-source models</span>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example data sources:</h4>
-                                <p class="text-oxy-dark mb-4">News, research articles, patents, contracts, clinical trials, physician notes, EMRs, social media, customer requests...</p>
+                                <h4 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mb-4">Example data sources:</h4>
+                                <p class="text-oxy-dark dark:text-dark-text mb-6">News, research articles, patents, contracts, clinical trials, physician notes, EMRs, social media, customer requests...</p>
                                 
-                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example NLP components:</h4>
-                                <ul class="space-y-1 text-oxy-dark">
-                                    <li>• Text summarization and question answering</li>
-                                    <li>• Multi-linguality and Machine Translation</li>
-                                    <li>• Named entity recognition (NER) and normalization</li>
-                                    <li>• Relation extraction and event extraction</li>
-                                    <li>• Document classification & sentiment analysis</li>
+                                <h4 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mb-4">Example NLP components:</h4>
+                                <ul class="space-y-2 text-oxy-dark dark:text-dark-text">
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Text summarization and question answering</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Multi-linguality and Machine Translation</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Named entity recognition (NER) and normalization</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Relation extraction and event extraction</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Document classification & sentiment analysis</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <!-- Production-grade code -->
-                    <div id="prod" class="bg-white border-2 border-gray-100 rounded-xl p-8">
-                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">2. Ensure your code base is ready for production</h3>
+                    <div id="prod" class="bg-white dark:bg-dark-surface border-2 border-oxy-primary/20 dark:border-dark-primary/20 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300">
+                        <h3 class="text-3xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-8 flex items-center">
+                            <span class="bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-xl font-bold">2</span>
+                            Ensure your code base is ready for production
+                        </h3>
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
-                                <ul class="space-y-2 text-oxy-dark">
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Perform rigorous testing and quality assessment
+                                <ul class="space-y-3 text-oxy-dark dark:text-dark-text">
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Perform rigorous testing and quality assessment</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Identify structural errors in datasets
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Identify structural errors in datasets</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Make code more robust and performant
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Make code more robust and performant</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Tune algorithms for better accuracy
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Tune algorithms for better accuracy</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Establish robust unit testing frameworks
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Establish robust unit testing frameworks</span>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example projects:</h4>
-                                <ul class="space-y-2 text-oxy-dark">
-                                    <li>• Code base performance optimization</li>
-                                    <li>• Hyperparameter tuning experiments</li>
-                                    <li>• Critical evaluation of existing NLP tools</li>
-                                    <li>• Dataset curation and annotation refinement</li>
+                                <h4 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mb-4">Example projects:</h4>
+                                <ul class="space-y-2 text-oxy-dark dark:text-dark-text">
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Code base performance optimization</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Hyperparameter tuning experiments</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Critical evaluation of existing NLP tools</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• Dataset curation and annotation refinement</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
 
                     <!-- Open-source maintenance -->
-                    <div id="os" class="bg-gray-50 rounded-xl p-8">
-                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">3. Open-source maintenance</h3>
+                    <div id="os" class="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-dark-bg/50 dark:to-dark-surface/50 rounded-2xl p-8 md:p-12 shadow-xl hover:shadow-2xl transition-all duration-300 border border-gray-200/50 dark:border-gray-700/50">
+                        <h3 class="text-3xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-8 flex items-center">
+                            <span class="bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent text-white rounded-full w-12 h-12 flex items-center justify-center mr-4 text-xl font-bold">3</span>
+                            Open-source maintenance
+                        </h3>
                         <div class="grid md:grid-cols-2 gap-8">
                             <div>
-                                <ul class="space-y-2 text-oxy-dark">
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Extend code base with new functionality
+                                <ul class="space-y-3 text-oxy-dark dark:text-dark-text">
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Extend code base with new functionality</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Fix bugs and review pull requests
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Fix bugs and review pull requests</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Organize GitHub issues and discussions
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Organize GitHub issues and discussions</span>
                                     </li>
-                                    <li class="flex items-start">
-                                        <span class="text-oxy-primary mr-2">•</span>
-                                        Engage with the community at large
+                                    <li class="flex items-start group">
+                                        <span class="text-oxy-primary dark:text-dark-primary mr-3 text-lg group-hover:scale-125 transition-transform duration-200">•</span>
+                                        <span class="group-hover:text-oxy-primary dark:group-hover:text-dark-primary transition-colors duration-200">Engage with the community at large</span>
                                     </li>
                                 </ul>
                             </div>
                             <div>
-                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example repositories:</h4>
-                                <ul class="space-y-1 text-oxy-dark">
-                                    <li>• <a href="https://github.com/explosion/spacy/" class="text-oxy-primary underline">spaCy</a> NLP library</li>
-                                    <li>• <a href="https://github.com/fastapi/fastapi/" class="text-oxy-primary underline">FastAPI</a> web framework</li>
-                                    <li>• <a href="https://github.com/explosion/thinc/" class="text-oxy-primary underline">Thinc</a> ML library</li>
-                                    <li>• <a href="https://github.com/fastapi/typer/" class="text-oxy-primary underline">Typer</a> CLI applications</li>
+                                <h4 class="text-xl font-semibold text-oxy-dark dark:text-dark-text mb-4">Example repositories:</h4>
+                                <ul class="space-y-2 text-oxy-dark dark:text-dark-text">
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• <a href="https://github.com/explosion/spacy/" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent">spaCy</a> NLP library</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• <a href="https://github.com/fastapi/fastapi/" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent">FastAPI</a> web framework</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• <a href="https://github.com/explosion/thinc/" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent">Thinc</a> ML library</li>
+                                    <li class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">• <a href="https://github.com/fastapi/typer/" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent">Typer</a> CLI applications</li>
                                 </ul>
                             </div>
                         </div>
@@ -305,70 +377,95 @@
         </section>
 
         <!-- Blog Section -->
-        <section id="blog" class="py-16 px-6 bg-oxy-bg">
+        <section id="blog" class="py-20 px-6 bg-oxy-bg dark:bg-dark-bg transition-colors duration-300">
             <div class="max-w-6xl mx-auto">
-                <div class="text-center mb-12">
-                    <div class="flex items-center justify-center mb-6">
-                        <img src="images/Blog.jpg" alt="Blog" class="w-16 h-16 rounded-full mr-4">
-                        <h2 class="text-3xl font-heading font-bold text-oxy-dark">Highlighted Blogs</h2>
+                <div class="text-center mb-16 animate-fade-in">
+                    <div class="flex items-center justify-center mb-8">
+                        <img src="images/Blog.jpg" alt="Blog" class="w-20 h-20 rounded-full mr-4 hover:scale-110 transition-transform duration-300 shadow-lg">
+                        <h2 class="text-4xl font-heading font-bold text-oxy-dark dark:text-dark-text">Highlighted Blogs</h2>
                     </div>
-                    <p class="text-oxy-dark italic">
-                        For a full overview of all blog posts <a href="#" class="text-oxy-primary underline">go here</a>.
+                    <div class="w-24 h-1 bg-gradient-to-r from-oxy-primary to-oxy-accent dark:from-dark-primary to-dark-accent mx-auto rounded-full mb-8"></div>
+                    <p class="text-oxy-dark dark:text-dark-text italic text-lg">
+                        For a full overview of all blog posts <a href="#" class="text-oxy-primary dark:text-dark-primary underline hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200">go here</a>.
                     </p>
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-8">
                     <!-- Blog Post 1 -->
-                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div class="p-6">
-                            <div class="text-sm text-oxy-light mb-4">11 June 2025</div>
-                            <div class="mb-4">
-                                <img src="images/inside_the_black_box.png" alt="Title slide of the presentation" class="w-full h-48 object-cover rounded-lg">
+                    <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group animate-slide-up" style="animation-delay: 0.1s;">
+                        <div class="p-8">
+                            <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-6 font-medium">11 June 2025</div>
+                            <div class="mb-6 overflow-hidden rounded-xl">
+                                <img src="images/inside_the_black_box.png" alt="Title slide of the presentation" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                             </div>
-                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
-                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
                                     Inside the black box: What open-weight LLMs today can (and can't) do
                                 </a>
                             </h3>
-                            <p class="text-oxy-dark text-sm leading-relaxed">
+                            <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed">
                                 The recent wave of open-weight LLMs are leveling the playing field – allowing developers to build robust, privacy-friendly and cost-efficient NLP applications.
                             </p>
+                            <div class="mt-6">
+                                <a href="#" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
 
                     <!-- Blog Post 2 -->
-                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div class="p-6">
-                            <div class="text-sm text-oxy-light mb-4">31 May 2025</div>
-                            <div class="mb-4">
-                                <img src="images/keynote_pyconitalia.jpg" alt="Video banner for Youtube" class="w-full h-48 object-cover rounded-lg">
+                    <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group animate-slide-up" style="animation-delay: 0.2s;">
+                        <div class="p-8">
+                            <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-6 font-medium">31 May 2025</div>
+                            <div class="mb-6 overflow-hidden rounded-xl">
+                                <img src="images/keynote_pyconitalia.jpg" alt="Video banner for Youtube" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                             </div>
-                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
-                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
                                     Data doesn't lie — but it can mislead: How to ensure integrity of your ML applications
                                 </a>
                             </h3>
-                            <p class="text-oxy-dark text-sm leading-relaxed">
+                            <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed">
                                 This talk explores the hidden story behind the performance metrics, moving beyond a single F-measure or accuracy score.
                             </p>
+                            <div class="mt-6">
+                                <a href="#" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
 
                     <!-- Blog Post 3 -->
-                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div class="p-6">
-                            <div class="text-sm text-oxy-light mb-4">24 January 2024</div>
-                            <div class="mb-4">
-                                <img src="images/2024_01_23_az.png" alt="Slide showing how to use built-in zero-shot NER with spacy-llm" class="w-full h-48 object-cover rounded-lg">
+                    <article class="bg-white dark:bg-dark-surface rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-gray-700 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group animate-slide-up" style="animation-delay: 0.3s;">
+                        <div class="p-8">
+                            <div class="text-sm text-oxy-light dark:text-dark-text/70 mb-6 font-medium">24 January 2024</div>
+                            <div class="mb-6 overflow-hidden rounded-xl">
+                                <img src="images/2024_01_23_az.png" alt="Slide showing how to use built-in zero-shot NER with spacy-llm" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300">
                             </div>
-                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
-                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark dark:text-dark-text mb-4 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary dark:hover:text-dark-primary transition-colors duration-200">
                                     From quick prototyping with LLMs to more reliable and efficient NLP solutions
                                 </a>
                             </h3>
-                            <p class="text-oxy-dark text-sm leading-relaxed">
+                            <p class="text-oxy-dark dark:text-dark-text/80 text-sm leading-relaxed">
                                 At AstraZeneca's NLP Community of Practice, I talked about how to use Large Language Models for fast prototyping.
                             </p>
+                            <div class="mt-6">
+                                <a href="#" class="inline-flex items-center text-oxy-primary dark:text-dark-primary hover:text-oxy-primary-dark dark:hover:text-dark-accent transition-colors duration-200 font-medium">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -377,50 +474,65 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contact" class="bg-oxy-dark text-white py-16 px-6">
+    <footer id="contact" class="bg-gradient-to-r from-oxy-dark via-oxy-primary to-oxy-dark dark:from-dark-surface dark:via-dark-bg dark:to-dark-surface text-white py-20 px-6 transition-colors duration-300">
         <div class="max-w-4xl mx-auto text-center">
-            <div class="mb-12">
-                <h2 class="text-3xl font-heading font-bold mb-4">Looking for a custom NLP solution?</h2>
-                <p class="text-xl text-white/90">
-                    Please contact me via: <a href="mailto:sofie@oxykodit.com" class="text-oxy-primary underline">sofie@oxykodit.com</a>
+            <div class="mb-16 animate-fade-in">
+                <h2 class="text-4xl font-heading font-bold mb-6">Looking for a custom NLP solution?</h2>
+                <div class="w-24 h-1 bg-white/30 mx-auto rounded-full mb-8"></div>
+                <p class="text-xl text-white/90 leading-relaxed">
+                    Please contact me via: 
+                    <a href="mailto:sofie@oxykodit.com" class="text-oxy-accent dark:text-dark-primary underline hover:text-white transition-colors duration-200 font-semibold inline-flex items-center">
+                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                        sofie@oxykodit.com
+                    </a>
                 </p>
             </div>
 
-            <!-- Social Media Icons -->
-            <div class="flex justify-center space-x-6 mb-12">
-                <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+            <!-- Enhanced Social Media Icons -->
+            <div class="flex justify-center space-x-8 mb-16">
+                <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-linkedin text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">LinkedIn</span>
                 </a>
-                <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fas fa-graduation-cap text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">Google Scholar</span>
                 </a>
-                <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fab fa-github-alt" aria-hidden="true"></i>
+                <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-github-alt text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">GitHub</span>
                 </a>
-                <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-youtube text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">YouTube</span>
                 </a>
-                <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fab fa-twitter text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">Twitter</span>
                 </a>
-                <a href="mailto:Sofie@oxykodit.com" class="text-white hover:text-oxy-primary transition-colors text-2xl">
-                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:Sofie@oxykodit.com" class="group bg-white/10 hover:bg-white/20 p-4 rounded-full transition-all duration-300 hover:scale-110">
+                    <i class="fas fa-envelope text-2xl text-white group-hover:text-oxy-accent dark:group-hover:text-dark-primary transition-colors duration-200"></i>
                     <span class="sr-only">Email</span>
                 </a>
             </div>
 
-            <!-- Copyright -->
+            <!-- Copyright with enhanced styling -->
             <div class="border-t border-white/20 pt-8">
-                <p class="text-white/70 text-sm">
+                <p class="text-white/70 text-sm mb-4">
                     &copy; Copyright 2019 – <span id="current-year"></span> | OxyKodit BV
                 </p>
-                <p class="text-white/60 text-xs mt-2">
-                    Site lovingly rebuilt by <a href="https://github.com/shivadeepak99" class="text-oxy-primary underline">shivadeepak99</a> — tribute to svlandeg's original OxyWeb (2017).
+                <p class="text-white/60 text-xs leading-relaxed bg-white/5 rounded-lg p-4 border border-white/10">
+                    Site lovingly rebuilt by <a href="https://github.com/shivadeepak99" class="text-oxy-accent dark:text-dark-primary underline hover:text-white transition-colors duration-200">shivadeepak99</a> — tribute to svlandeg's original OxyWeb (2017).
+                    <br>
+                    <span class="inline-flex items-center mt-2">
+                        <svg class="w-4 h-4 mr-1 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+                        </svg>
+                        Built with modern web technologies to preserve digital heritage.
+                    </span>
                 </p>
             </div>
         </div>
@@ -430,6 +542,26 @@
     <script>
         // Update current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.classList.toggle('dark', currentTheme === 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+            const isDark = html.classList.contains('dark');
+            html.classList.toggle('dark', !isDark);
+            localStorage.setItem('theme', !isDark ? 'dark' : 'light');
+            
+            // Add a smooth transition effect
+            document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            setTimeout(() => {
+                document.body.style.transition = '';
+            }, 300);
+        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -445,28 +577,114 @@
             });
         });
 
-        // Navigation bar scroll behavior
+        // Enhanced navigation bar scroll behavior
         let prevScrollPos = window.pageYOffset;
         const nav = document.getElementById('nav');
+        let ticking = false;
         
-        window.addEventListener('scroll', function() {
+        function updateNavigation() {
             const currentScrollPos = window.pageYOffset;
             const headerIntro = document.getElementById('header-intro');
             
             // Hide/show navigation based on scroll direction
             if (prevScrollPos > currentScrollPos) {
-                nav.style.top = '0.5rem';
-            } else {
-                nav.style.top = '-4rem';
+                nav.style.transform = 'translate(-50%, 0)';
+                nav.style.opacity = '1';
+            } else if (currentScrollPos > 100) {
+                nav.style.transform = 'translate(-50%, -100px)';
+                nav.style.opacity = '0.8';
             }
             
-            // Fade header intro on scroll
+            // Fade header intro on scroll with easing
             if (headerIntro) {
-                const opacity = Math.max(0, 1 - (currentScrollPos / 300));
+                const opacity = Math.max(0, 1 - (currentScrollPos / 400));
                 headerIntro.style.opacity = opacity;
+                headerIntro.style.transform = `translateY(${currentScrollPos * 0.3}px)`;
             }
             
             prevScrollPos = currentScrollPos;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateNavigation);
+                ticking = true;
+            }
+        });
+
+        // Intersection Observer for animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections for animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add stagger animation to cards
+            const cards = document.querySelectorAll('.animate-slide-up');
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add hover effects to project cards
+        document.querySelectorAll('.group').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add parallax effect to mountains
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('polygon');
+            
+            parallaxElements.forEach((element, index) => {
+                const speed = (index + 1) * 0.1;
+                element.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+        // Add typing effect to header text (optional enhancement)
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect after page load
+        window.addEventListener('load', () => {
+            const headerIntro = document.getElementById('header-intro');
+            const originalText = headerIntro.textContent;
+            // Uncomment the next line to enable typing effect
+            // typeWriter(headerIntro, originalText, 50);
         });
     </script>
 </body>
