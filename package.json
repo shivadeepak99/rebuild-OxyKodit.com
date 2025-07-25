@@ -1,0 +1,24 @@
+{
+  "name": "rebuild-oxykodit-com",
+  "version": "1.0.0",
+  "description": "Modern rebuild of OxyKodit.com using TailwindCSS",
+  "main": "index.html",
+  "scripts": {
+    "start": "python3 -m http.server 8000",
+    "dev": "python3 -m http.server 8000"
+  },
+  "keywords": [
+    "nlp",
+    "machine-learning",
+    "tailwindcss",
+    "static-website",
+    "tribute"
+  ],
+  "author": "shivadeepak99",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shivadeepak99/rebuild-OxyKodit.com.git"
+  },
+  "homepage": "https://github.com/shivadeepak99/rebuild-OxyKodit.com#readme"
+}

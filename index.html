@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OxyKodit – Tailored NLP solutions</title>
+    <meta name="description" content="Tailored solutions for your Machine Learning and Text Mining projects">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'oxy-primary': '#669990',
+                        'oxy-dark': '#324a51',
+                        'oxy-light': '#6f8085',
+                        'oxy-bg': '#f9f9f9',
+                    },
+                    fontFamily: {
+                        'heading': ['Cardo', 'serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cardo:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="images/OxyKodit_Logo_empty.png" type="image/png">
+</head>
+<body class="bg-oxy-bg text-oxy-dark font-body leading-relaxed">
+    
+    <!-- Skip Link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-oxy-primary text-white px-4 py-2 rounded">
+        Skip to content
+    </a>
+
+    <!-- Navigation -->
+    <nav id="nav" class="fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300">
+        <ul class="bg-white/90 backdrop-blur-sm rounded-xl px-6 py-3 flex space-x-6 text-sm font-medium shadow-lg">
+            <li><a href="#home" class="text-oxy-dark hover:text-oxy-primary transition-colors">Home</a></li>
+            <li><a href="#intro" class="text-oxy-dark hover:text-oxy-primary transition-colors">Introduction</a></li>
+            <li class="relative group">
+                <a href="#projects" class="text-oxy-dark hover:text-oxy-primary transition-colors">Projects</a>
+                <ul class="absolute top-full left-0 mt-2 bg-white rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 min-w-48">
+                    <li><a href="#ai" class="block px-4 py-2 text-sm hover:bg-gray-50">AI Proof-of-concept</a></li>
+                    <li><a href="#prod" class="block px-4 py-2 text-sm hover:bg-gray-50">Ready for production</a></li>
+                    <li><a href="#os" class="block px-4 py-2 text-sm hover:bg-gray-50">Open-source maintenance</a></li>
+                </ul>
+            </li>
+            <li><a href="#blog" class="text-oxy-dark hover:text-oxy-primary transition-colors">Blog</a></li>
+            <li><a href="#contact" class="text-oxy-dark hover:text-oxy-primary transition-colors">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-blue-100 via-green-50 to-oxy-bg">
+        <!-- Parallax Background Layers (Simplified for now) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-sky-200 via-emerald-100 to-oxy-bg"></div>
+        
+        <!-- Mountain Silhouettes (CSS-only approach) -->
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg viewBox="0 0 1200 300" class="w-full h-auto">
+                <!-- Back mountains -->
+                <polygon points="0,300 0,200 200,150 400,180 600,120 800,160 1000,100 1200,140 1200,300" fill="#a7c4bc" opacity="0.6"/>
+                <!-- Middle mountains -->
+                <polygon points="0,300 0,220 150,180 350,200 550,140 750,180 950,120 1200,160 1200,300" fill="#8bb5a8" opacity="0.7"/>
+                <!-- Front mountains -->
+                <polygon points="0,300 0,240 100,200 300,220 500,180 700,210 900,160 1200,200 1200,300" fill="#669990" opacity="0.8"/>
+            </svg>
+        </div>
+        
+        <!-- Header Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <div class="mb-8">
+                <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit Logo" class="w-24 h-24 mx-auto mb-6 drop-shadow-lg">
+            </div>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-6 drop-shadow-lg">
+                OxyKodit
+            </h1>
+            <p id="header-intro" class="text-xl md:text-2xl text-white/90 font-light leading-relaxed drop-shadow transition-opacity duration-1000">
+                Tailored solutions for your Machine Learning and Text Mining projects
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main id="main-content" class="relative z-10 bg-oxy-bg">
+        
+        <!-- Introduction Section -->
+        <section id="intro" class="py-16 px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-heading font-bold text-oxy-dark mb-4">Introduction</h2>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">
+                    <div class="flex items-center justify-center mb-8">
+                        <img src="images/OxyKodit_Logo_empty.png" alt="OxyKodit" class="w-16 h-16 rounded-full border-4 border-white shadow-lg mr-4">
+                        <h3 class="text-2xl font-heading font-bold text-oxy-dark">OxyKodit</h3>
+                    </div>
+                    
+                    <div class="prose prose-lg max-w-none text-oxy-dark">
+                        <p class="text-lg leading-relaxed mb-6">
+                            OxyKodit helps you unlock the power of your texts and data by implementing <strong>tailored AI solutions</strong>, ranging from Natural Language Processing (NLP) techniques to Large Language Models (LLMs) and Machine Learning (ML). Every single project is delivered on the <strong>timeline</strong> we agree upon in the initial contract, within the <strong>budget</strong> assigned to the specific <strong>deliverables and milestones</strong> we'll set out for your specific needs.
+                        </p>
+                        
+                        <p class="text-lg leading-relaxed mb-6">
+                            Being the founder, resident Data Scientist, chief Machine Learning Engineer, full-stack Software Developer and head of Quality Assurance all at once, I am passionate about ensuring <strong>code robustness and quality</strong> through rigorous testing, introducing proper levels of abstraction and battle-testing solutions. With a Master in Computer Science (software engineering) and a <a href="#" class="text-oxy-primary underline">PhD</a> in the field of BioNLP, I have been working in the domain <strong>since 2006</strong> and I'm familiar with both "traditional" NLP techniques as well as cutting-edge LLMs. I love designing custom algorithms and models for specific business use-cases, diving into the peculiarities of the application domain and data, and identifying ways to introduce efficiencies across business operations.
+                        </p>
+                        
+                        <p class="text-lg leading-relaxed mb-8">
+                            <a href="mailto:sofie@oxykodit.com" class="text-oxy-primary underline">Email me</a> to start a conversation about how we can achieve your data-driven goals together. I look forward to discussing your project!
+                        </p>
+                        
+                        <p class="text-right text-oxy-light italic">
+                            Sofie Van Landeghem
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-16 px-6 bg-white">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="flex items-center justify-center mb-6">
+                        <img src="images/services-icon-png-2302.png" alt="Tools" class="w-16 h-16 mr-4">
+                        <h2 class="text-3xl font-heading font-bold text-oxy-dark">Project opportunities</h2>
+                    </div>
+                </div>
+                
+                <div class="mb-12">
+                    <p class="text-lg text-center max-w-4xl mx-auto text-oxy-dark leading-relaxed">
+                        As a non-exhaustive list, OxyKodit offers the following types of projects. Each can be set up as a separate project, depending on the current phase and requirements of your specific use-case:
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <div class="text-center">
+                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
+                            <div class="text-4xl font-bold mb-2">1</div>
+                            <h3 class="text-xl font-semibold">AI proof-of-concept</h3>
+                        </div>
+                        <p class="text-oxy-dark">Identify ways to integrate Artificial Intelligence into your business</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
+                            <div class="text-4xl font-bold mb-2">2</div>
+                            <h3 class="text-xl font-semibold">Production-grade code</h3>
+                        </div>
+                        <p class="text-oxy-dark">Ensure your code base is ready for production</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-oxy-primary text-white rounded-lg p-6 mb-4">
+                            <div class="text-4xl font-bold mb-2">3</div>
+                            <h3 class="text-xl font-semibold">Open-source maintenance</h3>
+                        </div>
+                        <p class="text-oxy-dark">Implement features, fix bugs, and engage with the community</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Project Sections -->
+                <div class="space-y-16">
+                    <!-- AI Proof-of-concept -->
+                    <div id="ai" class="bg-gray-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">1. AI proof-of-concept</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">What we do:</h4>
+                                <ul class="space-y-2 text-oxy-dark">
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Perform thorough analysis of business cases
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Analyze available data sources for quality and signal
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Implement annotation frameworks
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Design suitable LLM and NLP strategies
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Analyze trade-offs between closed and open-source models
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example data sources:</h4>
+                                <p class="text-oxy-dark mb-4">News, research articles, patents, contracts, clinical trials, physician notes, EMRs, social media, customer requests...</p>
+                                
+                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example NLP components:</h4>
+                                <ul class="space-y-1 text-oxy-dark">
+                                    <li>• Text summarization and question answering</li>
+                                    <li>• Multi-linguality and Machine Translation</li>
+                                    <li>• Named entity recognition (NER) and normalization</li>
+                                    <li>• Relation extraction and event extraction</li>
+                                    <li>• Document classification & sentiment analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Production-grade code -->
+                    <div id="prod" class="bg-white border-2 border-gray-100 rounded-xl p-8">
+                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">2. Ensure your code base is ready for production</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <ul class="space-y-2 text-oxy-dark">
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Perform rigorous testing and quality assessment
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Identify structural errors in datasets
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Make code more robust and performant
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Tune algorithms for better accuracy
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Establish robust unit testing frameworks
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example projects:</h4>
+                                <ul class="space-y-2 text-oxy-dark">
+                                    <li>• Code base performance optimization</li>
+                                    <li>• Hyperparameter tuning experiments</li>
+                                    <li>• Critical evaluation of existing NLP tools</li>
+                                    <li>• Dataset curation and annotation refinement</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Open-source maintenance -->
+                    <div id="os" class="bg-gray-50 rounded-xl p-8">
+                        <h3 class="text-2xl font-heading font-bold text-oxy-dark mb-6">3. Open-source maintenance</h3>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <ul class="space-y-2 text-oxy-dark">
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Extend code base with new functionality
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Fix bugs and review pull requests
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Organize GitHub issues and discussions
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-oxy-primary mr-2">•</span>
+                                        Engage with the community at large
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-oxy-dark mb-4">Example repositories:</h4>
+                                <ul class="space-y-1 text-oxy-dark">
+                                    <li>• <a href="https://github.com/explosion/spacy/" class="text-oxy-primary underline">spaCy</a> NLP library</li>
+                                    <li>• <a href="https://github.com/fastapi/fastapi/" class="text-oxy-primary underline">FastAPI</a> web framework</li>
+                                    <li>• <a href="https://github.com/explosion/thinc/" class="text-oxy-primary underline">Thinc</a> ML library</li>
+                                    <li>• <a href="https://github.com/fastapi/typer/" class="text-oxy-primary underline">Typer</a> CLI applications</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="py-16 px-6 bg-oxy-bg">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <div class="flex items-center justify-center mb-6">
+                        <img src="images/Blog.jpg" alt="Blog" class="w-16 h-16 rounded-full mr-4">
+                        <h2 class="text-3xl font-heading font-bold text-oxy-dark">Highlighted Blogs</h2>
+                    </div>
+                    <p class="text-oxy-dark italic">
+                        For a full overview of all blog posts <a href="#" class="text-oxy-primary underline">go here</a>.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Blog Post 1 -->
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="text-sm text-oxy-light mb-4">11 June 2025</div>
+                            <div class="mb-4">
+                                <img src="images/inside_the_black_box.png" alt="Title slide of the presentation" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                                    Inside the black box: What open-weight LLMs today can (and can't) do
+                                </a>
+                            </h3>
+                            <p class="text-oxy-dark text-sm leading-relaxed">
+                                The recent wave of open-weight LLMs are leveling the playing field – allowing developers to build robust, privacy-friendly and cost-efficient NLP applications.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 2 -->
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="text-sm text-oxy-light mb-4">31 May 2025</div>
+                            <div class="mb-4">
+                                <img src="images/keynote_pyconitalia.jpg" alt="Video banner for Youtube" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                                    Data doesn't lie — but it can mislead: How to ensure integrity of your ML applications
+                                </a>
+                            </h3>
+                            <p class="text-oxy-dark text-sm leading-relaxed">
+                                This talk explores the hidden story behind the performance metrics, moving beyond a single F-measure or accuracy score.
+                            </p>
+                        </div>
+                    </article>
+
+                    <!-- Blog Post 3 -->
+                    <article class="bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="p-6">
+                            <div class="text-sm text-oxy-light mb-4">24 January 2024</div>
+                            <div class="mb-4">
+                                <img src="images/2024_01_23_az.png" alt="Slide showing how to use built-in zero-shot NER with spacy-llm" class="w-full h-48 object-cover rounded-lg">
+                            </div>
+                            <h3 class="text-xl font-heading font-bold text-oxy-dark mb-3 leading-tight">
+                                <a href="#" class="hover:text-oxy-primary transition-colors">
+                                    From quick prototyping with LLMs to more reliable and efficient NLP solutions
+                                </a>
+                            </h3>
+                            <p class="text-oxy-dark text-sm leading-relaxed">
+                                At AstraZeneca's NLP Community of Practice, I talked about how to use Large Language Models for fast prototyping.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-oxy-dark text-white py-16 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="mb-12">
+                <h2 class="text-3xl font-heading font-bold mb-4">Looking for a custom NLP solution?</h2>
+                <p class="text-xl text-white/90">
+                    Please contact me via: <a href="mailto:sofie@oxykodit.com" class="text-oxy-primary underline">sofie@oxykodit.com</a>
+                </p>
+            </div>
+
+            <!-- Social Media Icons -->
+            <div class="flex justify-center space-x-6 mb-12">
+                <a href="https://www.linkedin.com/in/sofievanlandeghem/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fab fa-linkedin" aria-hidden="true"></i>
+                    <span class="sr-only">LinkedIn</span>
+                </a>
+                <a href="https://scholar.google.com/citations?user=SR0kt_kAAAAJ&hl=en/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+                    <span class="sr-only">Google Scholar</span>
+                </a>
+                <a href="https://github.com/svlandeg/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fab fa-github-alt" aria-hidden="true"></i>
+                    <span class="sr-only">GitHub</span>
+                </a>
+                <a href="https://www.youtube.com/playlist?list=PL9MH-RvVdgbVl0wG8cHU2JQ657GdQ7Kc0" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                    <span class="sr-only">YouTube</span>
+                </a>
+                <a href="https://twitter.com/OxyKodit/" target="_blank" rel="noopener" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                    <span class="sr-only">Twitter</span>
+                </a>
+                <a href="mailto:Sofie@oxykodit.com" class="text-white hover:text-oxy-primary transition-colors text-2xl">
+                    <i class="fas fa-envelope" aria-hidden="true"></i>
+                    <span class="sr-only">Email</span>
+                </a>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/20 pt-8">
+                <p class="text-white/70 text-sm">
+                    &copy; Copyright 2019 – <span id="current-year"></span> | OxyKodit BV
+                </p>
+                <p class="text-white/60 text-xs mt-2">
+                    Site lovingly rebuilt by <a href="https://github.com/shivadeepak99" class="text-oxy-primary underline">shivadeepak99</a> — tribute to svlandeg's original OxyWeb (2017).
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Update current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navigation bar scroll behavior
+        let prevScrollPos = window.pageYOffset;
+        const nav = document.getElementById('nav');
+        
+        window.addEventListener('scroll', function() {
+            const currentScrollPos = window.pageYOffset;
+            const headerIntro = document.getElementById('header-intro');
+            
+            // Hide/show navigation based on scroll direction
+            if (prevScrollPos > currentScrollPos) {
+                nav.style.top = '0.5rem';
+            } else {
+                nav.style.top = '-4rem';
+            }
+            
+            // Fade header intro on scroll
+            if (headerIntro) {
+                const opacity = Math.max(0, 1 - (currentScrollPos / 300));
+                headerIntro.style.opacity = opacity;
+            }
+            
+            prevScrollPos = currentScrollPos;
+        });
+    </script>
+</body>
+</html>
